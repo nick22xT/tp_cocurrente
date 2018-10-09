@@ -8,17 +8,14 @@ public class RDP {
 	
 	private int plazas, transiciones;
 	
-	private int[] m0 = {0, 20, 0, 0, 0, 0, 0, 1, 1, 1}; 
+	private final int[] M0 = {2, 2, 0, 0, 0, 0, 1, 0, 20}; 
 	/* marcado inicial: contiene el 
 	 * estado inical de la red.*/
 	
 	private int[] m_actual;
-	
-	private int[][] pre;
-	/* matriz pre*/
-	
-	private int[][] post; 
-	/* matriz post*/
+
+	private int[][] insidencia;
+	/* Contiene las relaciones entre las plazas y las transiciones*/
 	
 	private int[][] inhibicion; 
 	/* matriz de inhibicion: relaciona las plazas que conectan las transiciones
@@ -27,48 +24,78 @@ public class RDP {
 
 	public RDP() {
 		
-		this.plazas = 10;
-		this.transiciones = 8;
+		this.plazas = 9;
+		this.transiciones = 6;
+		this.m_actual = M0;
 		
-		this.pre = this.cargarMatriz("src/Matrices/m_pre.txt");
-		this.post = this.cargarMatriz("src/Matrices/m_post.txt");
+		this.insidencia = this.cargarMatriz("src/Matrices/m_i.txt");
 		this.inhibicion = this.cargarMatriz("src/Matrices/matriz_h.txt");
 
+	}
+	
+	
+	/**
+	 * Devuelve el estado actual de la Red de Petri.
+	 * @return El vector de estado de la Red de Petri.
+	 */
+	public int[] getM_actual(){
+		
+		return m_actual;
 	}
 	
 	/**
 	 * Intenta disparar una transicion de la Red de Petri.
 	 * @param transicion: la transicion que se intenta disparar
-	 * @return true si la trnasicion pudo ser disparada, de lo contrario false.
+	 * @return true si la transicion pudo ser disparada, de lo contrario false.
 	 */
 	public boolean disparar(int transicion){
 		
-		int[] vDisparo = new int[transiciones];
-		
-		for(int i = 0; i < transiciones; i++){
+		int[] cTransicion = obtenerColumna(transicion);
+		int[] aux = null;
 			
-			if(i != transicion){
+		aux = sumar(m_actual, cTransicion);
+		
+		
+		for(int i = 0; i < plazas; i++){
+			
+			if(aux[i] < 0){
 				
-				vDisparo[i] = 0;
-			}else{
-				
-				vDisparo[i] = 1;
+				return false;
 			}
 		}
 		
-		//ejecutar la ecuacion de estado
+		m_actual = aux;
 		
-		return false;
+		return true;
 	}
 	
 	/**
 	 * Genera un vector con todas las transiciones sensibilizadas de la Red de Petri.
-	 * @return un vector con un 1 en el lugar correspondiente a una transicion sensibilizada, y un 0
-	 * en el lugar correspondiente auna transicion que NO esta sensibilizada.
+	 * @return un vector con un true en el lugar correspondiente a una transicion sensibilizada, y false
+	 * en el lugar correspondiente a una transicion que NO esta sensibilizada.
 	 */
-	public int[] sensibilizadas(){
+	public boolean[] sensibilizadas(){
 		
-		return null;
+		boolean[] aux = new boolean[transiciones];
+		
+		for(int i = 0; i < transiciones; i++){
+			
+			int[] suma = sumar(m_actual, obtenerColumna(i));
+			
+			for(int j = 0; j < plazas; j++){
+				
+				if(suma[j] < 0){
+					
+					aux[i] = false;
+					break;
+				}else{
+					
+					aux[i] = true;
+				}
+			}
+		}
+		
+		return aux;
 	}
 	
 	/**
@@ -87,6 +114,51 @@ public class RDP {
 	public int getTransiciones(){
 		
 		return transiciones;
+	}
+	
+	
+	/**
+	 * Obtiene la columna de la matriz de insidencia correspondiente a una transicion
+	 * en particular.
+	 * @param transicion
+	 * @return un vector que contiene los valores de la columna de 
+	 * la matriz de insidencia correspondiente a la transicion deseada. 
+	 */
+	public int[] obtenerColumna(int transicion){
+		
+		int[] aux = new int[plazas];
+		
+        for(int i = 0; i < plazas; i++){
+        	
+        	aux[i] = this.insidencia[i][transicion];
+        }
+		
+		return aux;
+	}
+	
+	
+	/**
+	 * Suma dos vectores coordenada a coordenada.
+	 * @param a
+	 * @param b
+	 * @return un vector que contiene la suma coordenada a coordenada de los vectores a y b.
+	 * @throws Exception 
+	 */
+	public int[] sumar(int[] a, int[] b){
+		
+		if(a.length != b.length){
+			
+			throw new IllegalArgumentException("Las dimensiones de los vectores no son iguales");
+		}
+		
+		int[] aux = new int[a.length];
+		
+		for(int i = 0; i < aux.length; i++){
+			
+			aux[i] = a[i] + b[i];
+		}
+		
+		return aux;
 	}
 	
 	/**
