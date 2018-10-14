@@ -13,39 +13,35 @@ public class Main {
 		
 		Thread t = new Thread(new Runnable(){
 			public void run(){
+				
+				int cont = 0;
+				
 				while(true){
 					
 					g.dispararTransicion(0);
-					System.out.println("Productor 1: Poniendo en el buffer.");
+					System.out.printf(cont + " Productor %s: Poniendo en el buffer.\n", Thread.currentThread().getName());
 					g.dispararTransicion(3);
 					g.dispararTransicion(4);
+					cont++;
 				}
 			}
 		});
 		
 		t.start();
 		
-		Thread t2 = new Thread(new Runnable(){
-			public void run(){
-				while(true){
-					
-					g.dispararTransicion(0);
-					System.out.println("Productor 2: Poniendo en el buffer.");
-					g.dispararTransicion(3);
-					g.dispararTransicion(4);
-				}
-			}
-		});
 		
-		t2.start();
 		
 		Thread t1 = new Thread(new Runnable(){
 			public void run(){
+				
+				int cont = 0;
+				
 				while(true){
 					g.dispararTransicion(1);
-					System.out.println("Consumidor 1: Sacando del buffer.");
+					System.out.printf(cont + " Consumidor %s: Sacando del buffer.\n", Thread.currentThread().getName());
 					g.dispararTransicion(2);
 					g.dispararTransicion(5);
+					cont++;
 				}
 			}
 		});
@@ -53,19 +49,6 @@ public class Main {
 		
 		t1.start();
 		
-		Thread t3 = new Thread(new Runnable(){
-			public void run(){
-				while(true){
-					g.dispararTransicion(1);
-					System.out.println("Consumidor 2: Sacando del buffer.");
-					g.dispararTransicion(2);
-					g.dispararTransicion(5);
-				}
-			}
-		});
-		
-		
-		t3.start();
 	}
 	
 	

@@ -42,44 +42,17 @@ public class RDP_Test {
 	}
 	
 	@Test
-	public void testSensibilizadas(){
+	public void testSensibilizadas1(){
 		
 		boolean[] a = red.sensibilizadas();
 		
-        for(int i = 0; i < a.length; i++){
-			
-			System.out.println(a[i] + "\n");
-		}
+        assertEquals(a[0], true);
+        assertEquals(a[1], false);
+        assertEquals(a[2], false);
+        assertEquals(a[3], false);
+        assertEquals(a[4], false);
+        assertEquals(a[5], false);
         
-        System.out.println("###############################################");
-        red.disparar(0);
-        
-        a = red.sensibilizadas();
-		
-        for(int i = 0; i < a.length; i++){
-			
-			System.out.println(a[i] + "\n");
-		}
-        
-        System.out.println("###############################################");
-        red.disparar(3);
-        
-        a = red.sensibilizadas();
-		
-        for(int i = 0; i < a.length; i++){
-			
-			System.out.println(a[i] + "\n");
-		}
-        
-        System.out.println("###############################################");
-        red.disparar(1);
-        
-        a = red.sensibilizadas();
-		
-        for(int i = 0; i < a.length; i++){
-			
-			System.out.println(a[i] + "\n");
-		}
 
 	}
 	
@@ -87,29 +60,15 @@ public class RDP_Test {
 	
 	
 	@Test
-	public void test() {
+	public void testDisparar1() {
 		
-		System.out.print(red.disparar(0) + "\n\n");
+		assertEquals(red.disparar(0), true);
+	}
+	
+	@Test
+	public void testDisparar2() {
 		
-		for(int i = 0; i < red.getPlazas(); i++){
-			
-			//System.out.println(red.m_actual[i]);
-		}
-		
-		/*System.out.print(red.disparar(3) + "\n\n");
-		
-        for(int i = 0; i < red.getPlazas(); i++){
-			
-			System.out.println(red.m_actual[i]);
-		}
-		
-		/*System.out.print(red.disparar(3) + "\n\n");
-		
-		System.out.print(red.disparar(1) + "\n\n");
-		
-		System.out.print(red.disparar(1) + "\n\n");
-		
-		System.out.print(red.disparar(1) + "\n\n");*/
+		assertEquals(red.disparar(1), false);
 	}
 
 }

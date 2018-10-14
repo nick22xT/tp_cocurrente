@@ -8,7 +8,7 @@ public class RDP {
 	
 	private int plazas, transiciones;
 	
-	private final int[] M0 = {2, 2, 0, 0, 0, 0, 1, 0, 20}; 
+	private final int[] M0 = {1, 1, 0, 0, 0, 0, 1, 0, 20}; 
 	/* marcado inicial: contiene el 
 	 * estado inical de la red.*/
 	

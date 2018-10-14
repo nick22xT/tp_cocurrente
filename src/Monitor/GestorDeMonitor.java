@@ -54,25 +54,26 @@ public class GestorDeMonitor {
 					
 					Cola reactivar = this.politica.cual(m, colas);
 					
-					k = false; //Para salir del monitor
 					reactivar.release();
+					return;
 					
 				}else{
 					
-					k = false;//Para salir del monitor
-					mutex.release();
+					k = false;
 					
 				}
 				
 			}else{
 				
-				k = false;
 				mutex.release();
 				colas[transicion].acquire();
 				//se pone al hilo en la cola de la transicion
 				
 			}
 		}
+		
+		mutex.release();
+		return;
 	}
 	
 	/**
