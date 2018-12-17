@@ -2,6 +2,8 @@ package Test;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 import Monitor.RDP;
@@ -69,6 +71,21 @@ public class RDP_Test {
 	public void testDisparar2() {
 		
 		assertEquals(red.disparar(1), false);
+	}
+	
+	@Test
+	public void testValidadInvariantes() {
+		Random random = new Random();
+		int[] m_actual = new int[red.getPlazas()];
+		
+		for(int i = 0; i < m_actual.length; i++) {
+			
+			m_actual[i] = random.nextInt();
+			
+			
+		}
+		
+		red.validarInvariantes(m_actual);
 	}
 
 }

@@ -1,0 +1,2 @@
+*Implementar las politicas
+*Incluir a la matriz de inhibicion en el metodo disparar de la clase RDP

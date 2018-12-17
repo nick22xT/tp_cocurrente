@@ -66,8 +66,8 @@ public class GestorDeMonitor {
 			}else{
 				
 				mutex.release();
-				colas[transicion].acquire();
-				//se pone al hilo en la cola de la transicion
+				colas[transicion].acquire();//se pone al hilo en la cola de la transicion
+				
 				
 			}
 		}

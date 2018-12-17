@@ -1,6 +1,8 @@
 package Main;
 
 import Monitor.*;
+import ProductorComsumidor.Consumidor;
+import ProductorComsumidor.Productor;
 
 public class Main {
 
@@ -11,42 +13,10 @@ public class Main {
 		
 		GestorDeMonitor g = new GestorDeMonitor(red, politica);
 		
-		Thread t = new Thread(new Runnable(){
-			public void run(){
-				
-				int cont = 0;
-				
-				while(true){
-					
-					g.dispararTransicion(0);
-					System.out.printf(cont + " Productor %s: Poniendo en el buffer.\n", Thread.currentThread().getName());
-					g.dispararTransicion(3);
-					g.dispararTransicion(4);
-					cont++;
-				}
-			}
-		});
+		Thread t0 = new Thread(new Productor(g));
+		Thread t1 = new Thread(new Consumidor(g));
 		
-		t.start();
-		
-		
-		
-		Thread t1 = new Thread(new Runnable(){
-			public void run(){
-				
-				int cont = 0;
-				
-				while(true){
-					g.dispararTransicion(1);
-					System.out.printf(cont + " Consumidor %s: Sacando del buffer.\n", Thread.currentThread().getName());
-					g.dispararTransicion(2);
-					g.dispararTransicion(5);
-					cont++;
-				}
-			}
-		});
-		
-		
+		t0.start();
 		t1.start();
 		
 	}

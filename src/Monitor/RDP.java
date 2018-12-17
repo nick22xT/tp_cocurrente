@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import Exceptions.*;
+
 public class RDP {
 	
 	private int plazas, transiciones;
 	
-	private final int[] M0 = {1, 1, 0, 0, 0, 0, 1, 0, 20}; 
+	private final int[] M0 = {1, 1, 0, 0, 0, 0, 1, 0, 2}; 
 	/* marcado inicial: contiene el 
 	 * estado inical de la red.*/
 	
@@ -55,6 +57,11 @@ public class RDP {
 			
 		aux = sumar(m_actual, cTransicion);
 		
+		try {
+			this.validarInvariantes(aux);
+		}catch(RuntimeException e) {
+			e.getMessage();
+		}
 		
 		for(int i = 0; i < plazas; i++){
 			
@@ -81,6 +88,12 @@ public class RDP {
 		for(int i = 0; i < transiciones; i++){
 			
 			int[] suma = sumar(m_actual, obtenerColumna(i));
+			
+			try {
+				this.validarInvariantes(suma);
+			}catch(RuntimeException e) {
+				e.getMessage();
+			}
 			
 			for(int j = 0; j < plazas; j++){
 				
@@ -159,6 +172,31 @@ public class RDP {
 		}
 		
 		return aux;
+	}
+	
+	public void validarInvariantes(int[] m_actual) {
+		
+		boolean invUno = m_actual[1] + m_actual[3] + m_actual[5] == 1;
+		boolean invDos = m_actual[0] + m_actual[2] + m_actual[4] == 1;
+		boolean invTres = m_actual[2] + m_actual[3] + m_actual[6] == 1;
+		boolean invCuatro = m_actual[2] + m_actual[3] + m_actual[7] + m_actual[8] == 2;
+		
+		if(!invUno) {
+			throw new InvUnoException();
+		}
+		
+        if(!invDos) {
+        	throw new InvDosException();
+		}
+        
+        if(!invTres) {
+        	throw new InvTresException();
+		}
+        
+        if(!invCuatro) {
+        	throw new InvCuatroException();
+		}
+
 	}
 	
 	/**
