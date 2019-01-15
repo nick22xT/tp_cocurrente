@@ -1,2 +1,12 @@
 *Implementar las politicas
 *Incluir a la matriz de inhibicion en el metodo disparar de la clase RDP
+
+
+**Posibles errores**
+*Falla la politica
+*Falla el metodo getVc
+*Falla el metodo cuantos
+*Falla el metodo and
+*Falla la clase RDP
+
+*CREAR UNIT TEST PARA ESTOS METODOS*
