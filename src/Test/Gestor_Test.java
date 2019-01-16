@@ -11,7 +11,7 @@ public class Gestor_Test {
     Politicas politica = new Politicas(6);
     GestorDeMonitor gestor = new GestorDeMonitor(rdp, politica);
 
-   /* @Test
+    @Test
     public void getVc_est(){
 
     }
@@ -24,5 +24,5 @@ public class Gestor_Test {
     @Test
     public void cuantos_test(){
 
-    }*/
+    }
 }
