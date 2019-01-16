@@ -22,10 +22,10 @@ public class Gestor_Test {
     @Test
     public void and_test(){
     	
-    	boolean a[]= {true,false,true,false,true,false};
-    	boolean b[]= {false,false,false,true,true,false};
+    	boolean a[]= {true,true,true,false};
+    	boolean b[]= {false,true,true,true};
     	boolean res[];
-    	boolean expected[]= {false,false,false,false,true,false};
+    	boolean expected[]= {false,true,true,false};
     	
     	res=gestor.and(a, b);
     	
