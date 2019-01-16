@@ -3,6 +3,10 @@ package Test;
 import Monitor.GestorDeMonitor;
 import Monitor.Politicas;
 import Monitor.RDP;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class Gestor_Test {
@@ -23,6 +27,8 @@ public class Gestor_Test {
 
     @Test
     public void cuantos_test(){
-
+    	boolean[] a= {true, false, true};
+    	assertEquals(2, gestor.cuantos(a));
+    	
     }
 }
