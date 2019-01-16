@@ -3,7 +3,7 @@
 
 
 **Posibles errores**
-*Falla la politica
+*Falla la politica (puede fallar por otro motivo, tiene implementados los metodos pero no se ejecutan)
 *Falla el metodo getVc
 *Falla el metodo cuantos
 *Falla el metodo and
