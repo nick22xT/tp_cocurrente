@@ -29,6 +29,5 @@ public class Gestor_Test {
     public void cuantos_test(){
     	boolean[] a= {true, false, true};
     	assertEquals(2, gestor.cuantos(a));
-    	
     }
 }
