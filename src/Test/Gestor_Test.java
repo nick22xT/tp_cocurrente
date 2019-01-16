@@ -3,6 +3,9 @@ package Test;
 import Monitor.GestorDeMonitor;
 import Monitor.Politicas;
 import Monitor.RDP;
+
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class Gestor_Test {
@@ -12,12 +15,21 @@ public class Gestor_Test {
     GestorDeMonitor gestor = new GestorDeMonitor(rdp, politica);
 
     @Test
-    public void getVc_est(){
+    public void getVc_test(){
 
     }
 
     @Test
     public void and_test(){
+    	
+    	boolean a[]= {true,false,true,false,true,false};
+    	boolean b[]= {false,false,false,true,true,false};
+    	boolean res[];
+    	boolean expected[]= {false,false,false,false,true,false};
+    	
+    	res=gestor.and(a, b);
+    	
+    	assertEquals(expected, res);
 
     }
 
