@@ -4,10 +4,6 @@ import Monitor.GestorDeMonitor;
 import Monitor.Politicas;
 import Monitor.RDP;
 
-<<<<<<< HEAD
-import static org.junit.Assert.assertArrayEquals;
-=======
->>>>>>> branch 'master' of https://github.com/nick22xT/tp_cocurrente.git
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -26,14 +22,14 @@ public class Gestor_Test {
     @Test
     public void and_test(){
     	
-    	boolean a[]= {true,true,true,false};
-    	boolean b[]= {false,true,true,true};
-    	boolean res[];
-    	boolean expected[]= {false,true,true,false};
+    	boolean a[] = {true,true,true,false};
+    	boolean b[] = {false,true,true,true};
+    	boolean res[] = gestor.and(a, b);
     	
-    	res=gestor.and(a, b);
-    	
-    	assertEquals(expected, res);
+    	assertEquals("El valor de la posicion 0 no es correcto", false , res[0]);
+        assertEquals("El valor de la posicion 1 no es correcto", true, res[1]);
+        assertEquals("El valor de la posicion 2 no es correcto", true , res[2]);
+        assertEquals("El valor de la posicion 3 no es correcto", false, res[3]);
 
     }
 
