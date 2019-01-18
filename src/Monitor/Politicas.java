@@ -1,23 +1,19 @@
 package Monitor;
 
 public class Politicas {
-	
-	
-	private int transiciones;
-	private PrioTrans[] prioridades = {PrioTrans.T1, PrioTrans.T2, PrioTrans.T5, PrioTrans.T0, PrioTrans.T3, PrioTrans.T4};
-	private int[][] m_prioridad = {{0,1,0,0,0,0},//T1
+	@SuppressWarnings("unused")
+	private int[][] m_prioridad = new int[][] {{0,1,0,0,0,0},//T1
                                    {0,0,1,0,0,0},//T2
                                    {0,0,0,0,0,1},//T5
                                    {1,0,0,0,0,0},//T0
                                    {0,0,0,1,0,0},//T3
                                    {0,0,0,0,1,0}};//T4
 
-	public Politicas(int transiciones) {
-		
-		this.transiciones = transiciones;
-		
-	}
 	
+	public Politicas() {
+		super();
+	}
+
 	public Cola cual(boolean[] m, Cola[] colas){
 		
 		Cola cola = null;

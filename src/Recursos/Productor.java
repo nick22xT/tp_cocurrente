@@ -1,4 +1,4 @@
-package ProductorComsumidor;
+package Recursos;
 
 import Monitor.GestorDeMonitor;
 

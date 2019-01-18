@@ -8,10 +8,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class Gestor_Test {
+public class GestorDeMonitorTest {
 
     RDP rdp = new RDP();
-    Politicas politica = new Politicas(6);
+    Politicas politica = new Politicas();
     GestorDeMonitor gestor = new GestorDeMonitor(rdp, politica);
 
     @Test
@@ -19,18 +19,12 @@ public class Gestor_Test {
 
     }
 
-    @Test
-    public void and_test(){
+    @Test(expected = IllegalArgumentException.class)
+    public void and_test_Illegal_Argument(){
     	
     	boolean a[] = {true,true,true,false};
     	boolean b[] = {false,true,true,true};
-    	boolean res[] = gestor.and(a, b);
-    	
-    	assertEquals("El valor de la posicion 0 no es correcto", false , res[0]);
-        assertEquals("El valor de la posicion 1 no es correcto", true, res[1]);
-        assertEquals("El valor de la posicion 2 no es correcto", true , res[2]);
-        assertEquals("El valor de la posicion 3 no es correcto", false, res[3]);
-
+    	gestor.andOperation(a, b);
     }
 
     @Test

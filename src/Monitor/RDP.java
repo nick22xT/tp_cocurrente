@@ -9,7 +9,7 @@ import Exceptions.*;
 public class RDP {
 	
 	private int plazas, transiciones;
-	private final int[] M0 = {0,1,0,0,0,0}; /* marcado inicial:
+	private final int[] M0 = {0, 0, 0, 0, 1, 1,	1, 3, 0, 0,	30,	0, 30, 0, 0, 0, 1, 1, 60, 0, 1, 0, 0, 1, 1}; /* marcado inicial:
 	contiene el estado inical de la red.*/
 	private int[] m_actual;
 	private int[][] insidencia;/* Contiene las relaciones entre las plazas y 
@@ -20,8 +20,8 @@ public class RDP {
 	 *  de la plaza a la transicion y cero si no lo hay.*/
 
 	public RDP() {
-		this.plazas = 6;
-		this.transiciones = 4;
+		this.plazas = 25;
+		this.transiciones = 18;
 		this.m_actual = M0;
 		this.insidencia = this.cargarMatriz("src/Matrices/m_i.txt");
 		this.inhibicion = this.cargarMatriz("src/Matrices/matriz_h.txt");

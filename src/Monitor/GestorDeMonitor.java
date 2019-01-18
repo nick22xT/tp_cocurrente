@@ -7,6 +7,7 @@ public class GestorDeMonitor {
 	private RDP rdp;
 	private Politicas politica;
 	private Cola[] colas;
+	private boolean k;
 	
 	public GestorDeMonitor(RDP rdp, Politicas politica) {
 		this.rdp = rdp;
@@ -30,15 +31,14 @@ public class GestorDeMonitor {
 			e.printStackTrace();
 		}
 		
-		boolean k = true;
-		
+		k = true;
 		while(k == true){
 			k = rdp.disparar(transicion); // disparar una transicion
 			
 			if(k == true){ //el hilo puede ejecutar su tarea
 				boolean[] vs = rdp.sensibilizadas();
 				boolean[] vc = getVc();
-				boolean[] m = and(vs, vc);
+				boolean[] m = andOperation(vs, vc);
 				
 				if(cuantos(m) != 0){
 					Cola reactivar = this.politica.cual(m, colas);
@@ -61,7 +61,7 @@ public class GestorDeMonitor {
 	 * un hilo esperando para poder disparar dichas transiciones. 
 	 * @return un vector de booleanos
 	 */
-	public boolean[] getVc(){
+	boolean[] getVc(){
 		boolean[] vc = new boolean[colas.length];
 		
 		for(int i = 0; i < colas.length; i++){
@@ -76,7 +76,10 @@ public class GestorDeMonitor {
 	 * @param b
 	 * @return un vector booleano con los resultados de la operacion AND.
 	 */
-	public boolean[] and(boolean[] a, boolean[] b){
+	public boolean[] andOperation(boolean[] a, boolean[] b){
+		if(a.length != rdp.getTransiciones() || b.length != rdp.getTransiciones() || a.length != b.length) {
+			throw new IllegalArgumentException();
+		}
 		boolean[] vAnd = new boolean[rdp.getTransiciones()];
 		
 		for(int i = 0; i < vAnd.length; i++){
