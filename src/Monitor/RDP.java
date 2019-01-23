@@ -47,7 +47,7 @@ public class RDP {
 		aux = sumar(m_actual, cTransicion);
 		
 		try {
-			this.validarInvariantes(aux);
+			//this.validarInvariantes(aux);
 		}catch(RuntimeException e) {
 			e.getMessage();
 		}
@@ -76,7 +76,7 @@ public class RDP {
 			int[] suma = sumar(m_actual, obtenerColumna(i));
 			
 			try {
-				this.validarInvariantes(suma);
+				//this.validarInvariantes(suma);
 			}catch(RuntimeException e) {
 				e.getMessage();
 			}

@@ -1,31 +1,52 @@
 package Main;
 
 import Monitor.*;
-import Recursos.Consumidor;
-import Recursos.Productor;
+import Recursos.*;
 
 public class Main {
 
 	public static void main(String[] args) {
+		GestorDeMonitor monitor = new GestorDeMonitor(new RDP(), new Politicas());
 		
-		RDP red = new RDP();
-		Politicas politica = new Politicas();
+		Thread entradaUno = new Thread(new Entrada(monitor, 0, "Entrada 1"));
+		Thread entradaDos = new Thread(new Entrada(monitor, 1, "Entrada 2"));
+		Thread entradaTres = new Thread(new Entrada(monitor, 2, "Entrada 3"));
 		
-		GestorDeMonitor g = new GestorDeMonitor(red, politica);
+		Thread barreraUno = new Thread(new BarreraDeEntrada(monitor, 3, "Barrera 1"));
+		Thread barreraDos = new Thread(new BarreraDeEntrada(monitor, 4, "Barrera 2"));
+		Thread barreraTres = new Thread(new BarreraDeEntrada(monitor, 5, "Barrera 3"));
 		
-		Thread t0 = new Thread(new Productor(g));
-		Thread t1 = new Thread(new Consumidor(g));
-		Thread t2 = new Thread(new Productor(g));
-		Thread t3 = new Thread(new Productor(g));
-		Thread t4 = new Thread(new Productor(g));
-		Thread t5 = new Thread(new Productor(g));		
-		t0.start();
-		t1.start();
-		t2.start();
-		t3.start();
-		t4.start();
-		t5.start();
+		Thread rampaSubidaUno = new Thread(new RampaSubida(monitor, 6, 8, "Rampa 1", "Piso 1"));
+		Thread rampaSubidaDos = new Thread(new RampaSubida(monitor, 7, 9, "Rampa 2", "Piso 2"));
 		
+		Thread rampaBajadaUno = new Thread(new RampaBajada(monitor, 10, 12, "Rampa 1", "Piso 1"));
+		Thread rampaBajadaDos = new Thread(new RampaBajada(monitor, 11, 13, "Rampa 2", "Piso 2"));
+		
+		Thread barreraSalidaUno = new Thread(new BarreraDeSalida(monitor, 14, "Salida 1"));
+		Thread barreraSalidaDos = new Thread(new BarreraDeSalida(monitor, 15, "Salida 2"));
+		
+		Thread salidaUno = new Thread(new Salida(monitor, 16, "Salida 1"));
+		Thread salidaDos = new Thread(new Salida(monitor, 17, "Salida 2"));
+		
+		entradaUno.start();
+		entradaDos.start();
+		entradaTres.start();
+		
+		barreraUno.start();
+		barreraDos.start();
+		barreraTres.start();
+		
+		rampaSubidaUno.start();
+		rampaSubidaDos.start();
+		
+		rampaBajadaUno.start();
+		rampaBajadaDos.start();
+		
+		barreraSalidaUno.start();
+		barreraSalidaDos.start();
+		
+		salidaUno.start();
+		salidaDos.start();
 	}
 	
 	
