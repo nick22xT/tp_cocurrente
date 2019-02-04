@@ -4,23 +4,27 @@ import java.util.concurrent.TimeUnit;
 
 import Monitor.GestorDeMonitor;
 
-public class RampaSubida implements Runnable {
+public class Estacionando implements Runnable {
 	private GestorDeMonitor monitor;
 	private int transicion;
-	private String rampa, piso;
+	private String piso;
+	
+	
 
-	public RampaSubida(GestorDeMonitor monitor, int transicion, String rampa) {
+	public Estacionando(GestorDeMonitor monitor, int transicion, String piso) {
 		super();
 		this.monitor = monitor;
 		this.transicion = transicion;
-		this.rampa = rampa;
+		this.piso = piso;
 	}
+
+
 
 	@Override
 	public void run() {
 		while(true) {
 			this.monitor.dispararTransicion(transicion);
-			System.out.printf(Thread.currentThread().getName() + " - Subiendo por la %s.\n", rampa);
+			System.out.printf(Thread.currentThread().getName() + " - Estacionando en el %s.\n", piso);
 			try {
 				TimeUnit.MILLISECONDS.sleep(500);
 			} catch (InterruptedException e) {
@@ -28,7 +32,7 @@ public class RampaSubida implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 }

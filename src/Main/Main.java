@@ -16,11 +16,14 @@ public class Main {
 		Thread barreraDos = new Thread(new BarreraDeEntrada(monitor, 4, "Barrera 2"));
 		Thread barreraTres = new Thread(new BarreraDeEntrada(monitor, 5, "Barrera 3"));
 		
-		Thread rampaSubidaUno = new Thread(new RampaSubida(monitor, 6, 8, "Rampa 1", "Piso 1"));
-		Thread rampaSubidaDos = new Thread(new RampaSubida(monitor, 7, 9, "Rampa 2", "Piso 2"));
+		Thread rampaSubidaUno = new Thread(new RampaSubida(monitor, 6, "Rampa 1"));
+		Thread rampaSubidaDos = new Thread(new RampaSubida(monitor, 7, "Rampa 2"));
 		
-		Thread rampaBajadaUno = new Thread(new RampaBajada(monitor, 10, 12, "Rampa 1", "Piso 1"));
-		Thread rampaBajadaDos = new Thread(new RampaBajada(monitor, 11, 13, "Rampa 2", "Piso 2"));
+		Thread entrandoPisoUno = new Thread(new Estacionando(monitor, 8, "Piso 1"));
+		Thread entrandoPisoDos = new Thread(new Estacionando(monitor, 9, "Piso 2"));
+		
+		Thread rampaBajadaUno = new Thread(new RampaBajada(monitor, 10, 12, "Salida-Rampa 1", "Salida-Piso 1"));
+		Thread rampaBajadaDos = new Thread(new RampaBajada(monitor, 11, 13, "Salida-Rampa 2", "Salida-Piso 2"));
 		
 		Thread barreraSalidaUno = new Thread(new BarreraDeSalida(monitor, 14, "Salida 1"));
 		Thread barreraSalidaDos = new Thread(new BarreraDeSalida(monitor, 15, "Salida 2"));
@@ -38,6 +41,9 @@ public class Main {
 		
 		rampaSubidaUno.start();
 		rampaSubidaDos.start();
+		
+		entrandoPisoUno.start();
+		entrandoPisoDos.start();
 		
 		rampaBajadaUno.start();
 		rampaBajadaDos.start();
