@@ -6,7 +6,7 @@ import Recursos.*;
 public class Main {
 
 	public static void main(String[] args) {
-		GestorDeMonitor monitor = new GestorDeMonitor(new RDP(), new Politicas());
+		GestorDeMonitor monitor = new GestorDeMonitor(new RDP());
 		
 		Thread entradaUno = new Thread(new Entrada(monitor, 0, "Entrada 1"));
 		Thread entradaDos = new Thread(new Entrada(monitor, 1, "Entrada 2"));

@@ -5,13 +5,11 @@ import java.util.concurrent.Semaphore;
 public class GestorDeMonitor {
 	private Semaphore mutex;
 	private RDP rdp;
-	private Politicas politica;
 	private Cola[] colas;
 	private boolean k;
 	
-	public GestorDeMonitor(RDP rdp, Politicas politica) {
+	public GestorDeMonitor(RDP rdp) {
 		this.rdp = rdp;
-		this.politica = politica;
 		this.mutex = new Semaphore(1, true);
 		this.colas = new Cola[rdp.getTransiciones()];
 		
@@ -40,14 +38,14 @@ public class GestorDeMonitor {
 				boolean[] vc = getVc();
 				boolean[] m = andOperation(vs, vc);
 				
-				if(cuantos(m) != 0){
-					Cola reactivar = this.politica.cual(m, colas);
+				if(cuantos(m) != 0) {
+					Cola reactivar = Politicas.cual(m, colas);
 					reactivar.release();
 					return;
-				}else{
+				} else {
 					k = false;
 				}
-			}else{
+			} else {
 				mutex.release();
 				colas[transicion].acquire();//se pone al hilo en la cola de la transicion
 			}
