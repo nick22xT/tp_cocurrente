@@ -9,22 +9,20 @@ import Exceptions.*;
 public class RDP {
 	
 	private int plazas, transiciones;
-	private final int[] M0 = {0, 0, 0, 0, 1, 1,	1, 3, 0, 0,	30,	0, 30, 0, 0, 0, 1, 1, 60, 0, 1, 0, 0, 1, 1}; /* marcado inicial:
-	contiene el estado inical de la red.*/
+	private static final int[] M0 = {0, 0, 0, 0, 1, 1,	1, 3, 0, 0,
+			30,	0, 30, 0, 0, 0, 1, 1, 60, 0, 1, 0, 0, 1, 1}; /* marcado inicial:contiene el estado inical de la red.*/
 	private int[] m_actual;
-	private int[][] insidencia;/* Contiene las relaciones entre las plazas y 
-	las transiciones*/
-	private int[][] inhibicion; 
-	/* matriz de inhibicion: relaciona las plazas que conectan las transiciones
-	 *  con un brazo inhibidor, los terminos de la matriz son uno si hay brazo inhibidor
-	 *  de la plaza a la transicion y cero si no lo hay.*/
+	private int[][] insidencia;/* Contiene las relaciones entre las plazas y las transiciones*/
+	private int[][] inhibicion;
+	private boolean guardaT7;
 
 	public RDP() {
 		this.plazas = 25;
 		this.transiciones = 18;
 		this.m_actual = M0;
 		this.insidencia = this.cargarMatriz("src/Matrices/m_i.txt");
-		this.inhibicion = this.cargarMatriz("src/Matrices/matriz_h.txt");
+		this.inhibicion = this.cargarMatriz("src/Matrices/m_h.txt");
+		this.guardaT7 = false;
 
 	}
 	/**
@@ -46,10 +44,9 @@ public class RDP {
 			
 		aux = sumar(m_actual, cTransicion);
 		
-		try {
-			//this.validarInvariantes(aux);
-		}catch(RuntimeException e) {
-			e.getMessage();
+		if(transicion == 7 && aux[transicion] > 0 && guardaT7 == false) {
+			guardaT7 = true;
+			return false;
 		}
 		
 		for(int i = 0; i < plazas; i++){
@@ -58,7 +55,6 @@ public class RDP {
 			}
 		}
 		m_actual = aux;
-		
 		return true;
 	}
 	
@@ -68,18 +64,10 @@ public class RDP {
 	 * en el lugar correspondiente a una transicion que NO esta sensibilizada.
 	 */
 	public boolean[] sensibilizadas(){
-		
 		boolean[] aux = new boolean[transiciones];
 		
 		for(int i = 0; i < transiciones; i++){
-			
 			int[] suma = sumar(m_actual, obtenerColumna(i));
-			
-			try {
-				//this.validarInvariantes(suma);
-			}catch(RuntimeException e) {
-				e.getMessage();
-			}
 			
 			for(int j = 0; j < plazas; j++){
 				if(suma[j] < 0){
@@ -147,30 +135,6 @@ public class RDP {
 		return aux;
 	}
 	
-	public void validarInvariantes(int[] m_actual) {
-		boolean invUno = m_actual[1] + m_actual[3] + m_actual[5] == 1;
-		boolean invDos = m_actual[0] + m_actual[2] + m_actual[4] == 1;
-		boolean invTres = m_actual[2] + m_actual[3] + m_actual[6] == 1;
-		boolean invCuatro = m_actual[2] + m_actual[3] + m_actual[7] + m_actual[8] == 2;
-		
-		if(!invUno) {
-			throw new InvUnoException();
-		}
-		
-        if(!invDos) {
-        	throw new InvDosException();
-		}
-        
-        if(!invTres) {
-        	throw new InvTresException();
-		}
-        
-        if(!invCuatro) {
-        	throw new InvCuatroException();
-		}
-
-	}
-	
 	/**
 	 * Carga una matriz desde un archivo
 	 * @param direccion: la direccion en la que se encuentra el archivo.
@@ -191,8 +155,6 @@ public class RDP {
 				for(int j =0; j < aux[0].length; j++){
 					if(scanner.hasNextInt())
 						aux[i][j] = scanner.nextInt();
-					else 
-						break; 
 				}
 			}
 		}

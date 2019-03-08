@@ -24,7 +24,6 @@ public class RampaBajada implements Runnable {
 		while(true) {
 			this.monitor.dispararTransicion(primeraTransicion);
 			System.out.printf(Thread.currentThread().getName() + " - Saliendo del %s.\n", piso);
-			System.out.printf(Thread.currentThread().getName() + " - Bajando por la %s.\n", rampa);
 			try {
 				TimeUnit.MILLISECONDS.sleep(500);
 			} catch (InterruptedException e) {
@@ -32,7 +31,7 @@ public class RampaBajada implements Runnable {
 				e.printStackTrace();
 			}
 			this.monitor.dispararTransicion(segundaTransicion);
-			System.out.println(Thread.currentThread().getName() + " - Entrando a la zona de la Caja para pagar.");
+			System.out.printf(Thread.currentThread().getName() + " - Entrando en zona de cajero por %s.\n", rampa);
 			try {
 				TimeUnit.MILLISECONDS.sleep(500);
 			} catch (InterruptedException e) {

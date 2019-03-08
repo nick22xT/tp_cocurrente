@@ -11,8 +11,7 @@ import org.junit.Test;
 public class GestorDeMonitorTest {
 
     RDP rdp = new RDP();
-    Politicas politica = new Politicas();
-    GestorDeMonitor gestor = new GestorDeMonitor(rdp, politica);
+    GestorDeMonitor gestor = new GestorDeMonitor(rdp);
 
     @Test
     public void getVc_test(){

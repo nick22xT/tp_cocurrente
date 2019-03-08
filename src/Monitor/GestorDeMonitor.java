@@ -7,7 +7,7 @@ public class GestorDeMonitor {
 	private RDP rdp;
 	private Cola[] colas;
 	private boolean k;
-	
+
 	public GestorDeMonitor(RDP rdp) {
 		this.rdp = rdp;
 		this.mutex = new Semaphore(1, true);
@@ -39,8 +39,8 @@ public class GestorDeMonitor {
 				boolean[] m = andOperation(vs, vc);
 				
 				if(cuantos(m) != 0) {
-					Cola reactivar = Politicas.cual(m, colas);
-					reactivar.release();
+					int queueNumber = Politicas.cual(m, colas, rdp.getM_actual());
+					colas[queueNumber].release();
 					return;
 				} else {
 					k = false;
