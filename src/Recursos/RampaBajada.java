@@ -31,7 +31,7 @@ public class RampaBajada implements Runnable {
 				e.printStackTrace();
 			}
 			this.monitor.dispararTransicion(segundaTransicion);
-			System.out.printf(Thread.currentThread().getName() + " - Entrando en zona de cajero por %s.\n", rampa);
+			System.out.printf(Thread.currentThread().getName() + " - Esperando para entrar en zona de cajero por %s.\n", rampa);
 			try {
 				TimeUnit.MILLISECONDS.sleep(500);
 			} catch (InterruptedException e) {

@@ -22,11 +22,14 @@ public class Main {
 		Thread rampaBajadaUno = new Thread(new RampaBajada(monitor, 10, 12, "PISO 1", "RAMPA 1"));
 		Thread rampaBajadaDos = new Thread(new RampaBajada(monitor, 11, 13, "PISO 2", "RAMPA 2"));
 		
-		Thread barreraSalidaUno = new Thread(new BarreraDeSalida(monitor, 14, "SALIDA 1"));
-		Thread barreraSalidaDos = new Thread(new BarreraDeSalida(monitor, 15, "SALIDA 2"));
+		Thread zonaDeCaja1 = new Thread(new ZonaDeCaja(monitor, 14, "SALIDA 1"));
+		Thread zonaDeCaja2 = new Thread(new ZonaDeCaja(monitor, 15, "SALIDA 2"));
 		
-		Thread salidaUno = new Thread(new Salida(monitor, 16, "SALIDA 1"));
-		Thread salidaDos = new Thread(new Salida(monitor, 17, "SALIDA 2"));
+		Thread barreraSalidaUno = new Thread(new BarreraDeSalida(monitor, 16, "SALIDA 1"));
+		Thread barreraSalidaDos = new Thread(new BarreraDeSalida(monitor, 17, "SALIDA 2"));
+		
+		Thread salidaUno = new Thread(new Salida(monitor, 18, "SALIDA 1"));
+		Thread salidaDos = new Thread(new Salida(monitor, 19, "SALIDA 2"));
 		
 		entradaUno.start();
 		entradaDos.start();
@@ -41,6 +44,9 @@ public class Main {
 		rampaBajadaUno.start();
 		rampaBajadaDos.start();
 		
+		zonaDeCaja1.start();
+		zonaDeCaja2.start();
+		
 		barreraSalidaUno.start();
 		barreraSalidaDos.start();
 		
@@ -53,7 +59,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		entradaPisoDos.start();
+		//entradaPisoDos.start();
 	}
 	
 	

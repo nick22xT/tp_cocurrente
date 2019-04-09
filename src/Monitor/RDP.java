@@ -4,24 +4,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import Exceptions.*;
-
 public class RDP {
 	
 	private int plazas, transiciones;
-	private static final int[] M0 = {0, 0, 0, 0, 1, 1,	1, 3, 0, 0,
-			30,	0, 30, 0, 0, 0, 1, 1, 60, 0, 1, 0, 0, 1, 1}; /* marcado inicial:contiene el estado inical de la red.*/
+	private static final int[] M0 = {0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 30, 0, 30, 0, 0, 0, 1, 1, 60, 0, 0, 1, 1, 0, 1, 0, 0}; /* marcado inicial:contiene el estado inical de la red.*/
 	private int[] m_actual;
 	private int[][] insidencia;/* Contiene las relaciones entre las plazas y las transiciones*/
-	private int[][] inhibicion;
 	private boolean guardaT7;
 
 	public RDP() {
-		this.plazas = 25;
-		this.transiciones = 18;
+		this.plazas = 27;
+		this.transiciones = 20;
 		this.m_actual = M0;
 		this.insidencia = this.cargarMatriz("src/Matrices/m_i.txt");
-		this.inhibicion = this.cargarMatriz("src/Matrices/m_h.txt");
 		this.guardaT7 = false;
 
 	}

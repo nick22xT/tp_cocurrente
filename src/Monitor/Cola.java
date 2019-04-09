@@ -1,11 +1,11 @@
 package Monitor;
 
 public class Cola {
-	private boolean empty;
+	private boolean notEmpty;
 	private int contador; //lleva la cuenta de la cantidad de hilos suspendidos en la cola
 	
 	public Cola(){
-		this.empty = false;
+		this.notEmpty = false;
 		this.contador = 0;
 	}
 	
@@ -14,11 +14,11 @@ public class Cola {
 	 * @return true si hay un elemento en su interior, de lo contrario devuelve false.
 	 */
 	public boolean quienesEstan(){
-		return empty;
+		return notEmpty;
 	}
 	
 	public synchronized void acquire(){
-		this.empty = true;
+		this.notEmpty = true;
 		this.contador++;
 		try{
 			wait();
@@ -28,10 +28,10 @@ public class Cola {
 	}
 	
 	public synchronized void release(){
-		if(empty){
+		if(notEmpty){
 			this.contador--;
 			if(contador == 0){
-				this.empty = false;
+				this.notEmpty = false;
 				notify();
 				return;
 			}else{
