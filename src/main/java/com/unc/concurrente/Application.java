@@ -1,5 +1,7 @@
 package com.unc.concurrente;
 
+import java.io.IOException;
+
 import com.unc.concurrente.monitor.GestorDeMonitor;
 import com.unc.concurrente.monitor.RDP;
 import com.unc.concurrente.recursos.Entrada;
@@ -8,9 +10,9 @@ import com.unc.concurrente.recursos.RampaSubida;
 import com.unc.concurrente.recursos.Salida;
 import com.unc.concurrente.recursos.ZonaDeCaja;
 
-public class Main {
+public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		GestorDeMonitor monitor = new GestorDeMonitor(new RDP());
 		
 		Thread entradaUno = new Thread(new Entrada(monitor, 0, 3, "ENTRADA 1"));
@@ -50,7 +52,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		//entradaPisoDos.start();
+		entradaPisoDos.start();
 	}
 	
 	

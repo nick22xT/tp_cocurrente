@@ -1,58 +1,171 @@
 package com.unc.concurrente.monitor;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class RDPTest {
 	
-	private RDP red = new RDP();
+	private static final int TRANSICIONES = 6;
+	private static final int PLAZAS = 9;
+	private static final Integer[] M0 = new Integer[]{1, 1, 0, 0, 0, 0, 1, 0, 5};
+	private static final Integer[][] INCIDENCIA = cargarMatriz("src/test/resources/m_i.txt");
+	private RDP red;
 	
-	
-	@Test
-	public void suma_Method_Test(){
-		int[] a = {1, 1, 2, 0, 0};
-		int[] b = {2, 0, 1, 0, 1};
-		int[] res = red.sumar(a, b);
-		
-		assertEquals("El valor en la posicion 0 no es el eserado", 3, res[0]);
-		assertEquals("El valor en la posicion 1 no es el eserado", 1, res[1]);
-		assertEquals("El valor en la posicion 2 no es el eserado", 3, res[2]);
-		assertEquals("El valor en la posicion 3 no es el eserado", 0, res[3]);
-		assertEquals("El valor en la posicion 4 no es el eserado", 1, res[4]);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void suma_Method_Test_Illegal_Argument(){
-		int[] a = {1, 1, 2, 0, 0};
-		int[] b = {2, 0, 1, 0};
-		red.sumar(a, b);
+	@Before
+	public void cargarRDP() { 
+		red = new RDP(INCIDENCIA, M0, PLAZAS, TRANSICIONES);
 	}
 	
 	@Test
-	public void sensibilizadas_Method_Test(){
+	public void test_obtener_sensibilizadas_sin_haber_disparado_la_red() {
+		Boolean[] sensibilizadas = red.sensibilizadas();
 		
-		Boolean[] a = red.sensibilizadas();
+        assertEquals("El valor en la posicion 0 no es el eserado", true, sensibilizadas[0]);
+        assertEquals("El valor en la posicion 1 no es el eserado", false, sensibilizadas[1]);
+        assertEquals("El valor en la posicion 2 no es el eserado", false, sensibilizadas[2]);
+        assertEquals("El valor en la posicion 3 no es el eserado", false, sensibilizadas[3]);
+        assertEquals("El valor en la posicion 4 no es el eserado", false, sensibilizadas[4]);
+        assertEquals("El valor en la posicion 5 no es el eserado", false, sensibilizadas[5]);
+	}
+	
+	@Test
+	public void test_obtener_sensibilizadas_despues_de_disparar_transicion_cero() {
+		boolean resultadoDisparo = red.disparar(0);
+		Boolean[] sensibilizadas = red.sensibilizadas();
 		
-        assertEquals("El valor en la posicion 0 no es el eserado", true, a[0]);
-        assertEquals("El valor en la posicion 1 no es el eserado", false, a[1]);
-        assertEquals("El valor en la posicion 2 no es el eserado", false, a[2]);
-        assertEquals("El valor en la posicion 3 no es el eserado", false, a[3]);
-        assertEquals("El valor en la posicion 4 no es el eserado", false, a[4]);
-        assertEquals("El valor en la posicion 5 no es el eserado", false, a[5]);
-        
+		assertEquals("El valor retornado no fue el esperado", true, resultadoDisparo);
+		
+		assertEquals("El valor en la posicion 0 no es el eserado", false, sensibilizadas[0]);
+        assertEquals("El valor en la posicion 1 no es el eserado", false, sensibilizadas[1]);
+        assertEquals("El valor en la posicion 2 no es el eserado", false, sensibilizadas[2]);
+        assertEquals("El valor en la posicion 3 no es el eserado", true, sensibilizadas[3]);
+        assertEquals("El valor en la posicion 4 no es el eserado", false, sensibilizadas[4]);
+        assertEquals("El valor en la posicion 5 no es el eserado", false, sensibilizadas[5]);
+	}
+	
+	@Test
+	public void test_obtener_sensibilizadas_despues_de_disparar_la_transicion_cero_y_luego_la_transicion_tres() {
+		boolean[] resultadosDeDisparo = new boolean[2];
+		resultadosDeDisparo[0] = red.disparar(0);
+		resultadosDeDisparo[1] = red.disparar(3);
+		Boolean[] sensibilizadas = red.sensibilizadas();
+		
+		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[0]);
+		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[1]);
+		
+		assertEquals("El valor en la posicion 0 no es el eserado", false, sensibilizadas[0]);
+        assertEquals("El valor en la posicion 1 no es el eserado", true, sensibilizadas[1]);
+        assertEquals("El valor en la posicion 2 no es el eserado", false, sensibilizadas[2]);
+        assertEquals("El valor en la posicion 3 no es el eserado", false, sensibilizadas[3]);
+        assertEquals("El valor en la posicion 4 no es el eserado", true, sensibilizadas[4]);
+        assertEquals("El valor en la posicion 5 no es el eserado", false, sensibilizadas[5]);
+	}
+	
+	@Test
+	public void test_disparar_transicion_cero() {
+		boolean resultadoDisparo = red.disparar(0);
+		Integer[] marcado = red.getM_actual();
+		
+		assertEquals("El valor retornado no fue el esperado", true, resultadoDisparo);
+		
+		assertEquals("El valor en la posicion 0 no es el eserado", 0, marcado[0].intValue());
+        assertEquals("El valor en la posicion 1 no es el eserado", 1, marcado[1].intValue());
+        assertEquals("El valor en la posicion 2 no es el eserado", 1, marcado[2].intValue());
+        assertEquals("El valor en la posicion 3 no es el eserado", 0, marcado[3].intValue());
+        assertEquals("El valor en la posicion 4 no es el eserado", 0, marcado[4].intValue());
+        assertEquals("El valor en la posicion 5 no es el eserado", 0, marcado[5].intValue());
+        assertEquals("El valor en la posicion 6 no es el eserado", 0, marcado[6].intValue());
+        assertEquals("El valor en la posicion 7 no es el eserado", 0, marcado[7].intValue());
+        assertEquals("El valor en la posicion 8 no es el eserado", 4, marcado[8].intValue());
 
 	}
 	
 	@Test
-	public void disparar_Method_T0_Test() {
+	public void test_disparar_transicion_uno() {
+		boolean resultadoDisparo = red.disparar(1);
+		Integer[] marcado = red.getM_actual();
 		
-		assertEquals("El valor retornado no fue el esperado", true, red.disparar(0));
+		assertEquals("El valor retornado no fue el esperado", false, resultadoDisparo);
+		
+		assertEquals("El valor en la posicion 0 no es el eserado", 1, marcado[0].intValue());
+        assertEquals("El valor en la posicion 1 no es el eserado", 1, marcado[1].intValue());
+        assertEquals("El valor en la posicion 2 no es el eserado", 0, marcado[2].intValue());
+        assertEquals("El valor en la posicion 3 no es el eserado", 0, marcado[3].intValue());
+        assertEquals("El valor en la posicion 4 no es el eserado", 0, marcado[4].intValue());
+        assertEquals("El valor en la posicion 5 no es el eserado", 0, marcado[5].intValue());
+        assertEquals("El valor en la posicion 6 no es el eserado", 1, marcado[6].intValue());
+        assertEquals("El valor en la posicion 7 no es el eserado", 0, marcado[7].intValue());
+        assertEquals("El valor en la posicion 8 no es el eserado", 5, marcado[8].intValue());
 	}
 	
 	@Test
-	public void disparar_Method_T1_Test() {
+	public void test_disparar_transicion_cero_y_luego_la_transicion_tres() {
+		boolean[] resultadosDeDisparo = new boolean[2];
+		resultadosDeDisparo[0] = red.disparar(0);
+		resultadosDeDisparo[1] = red.disparar(3);
+		Integer[] marcado = red.getM_actual();
 		
-		assertEquals("El valor retornado no fue el esperado", false, red.disparar(1));
+		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[0]);
+		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[1]);
+		
+		assertEquals("El valor en la posicion 0 no es el eserado", 0, marcado[0].intValue());
+        assertEquals("El valor en la posicion 1 no es el eserado", 1, marcado[1].intValue());
+        assertEquals("El valor en la posicion 2 no es el eserado", 0, marcado[2].intValue());
+        assertEquals("El valor en la posicion 3 no es el eserado", 0, marcado[3].intValue());
+        assertEquals("El valor en la posicion 4 no es el eserado", 1, marcado[4].intValue());
+        assertEquals("El valor en la posicion 5 no es el eserado", 0, marcado[5].intValue());
+        assertEquals("El valor en la posicion 6 no es el eserado", 1, marcado[6].intValue());
+        assertEquals("El valor en la posicion 7 no es el eserado", 1, marcado[7].intValue());
+        assertEquals("El valor en la posicion 8 no es el eserado", 4, marcado[8].intValue());
+	}
+	
+	
+	
+	@Test
+	public void test_sumar_dos_vectores_de_igual_dimension() {
+		Integer[] a = {1, 1, 2, 0, 0};
+		Integer[] b = {2, 0, 1, 0, 1};
+		Integer[] res = red.sumar(a, b);
+		
+		assertEquals("El valor en la posicion 0 no es el eserado", 3, res[0].intValue());
+		assertEquals("El valor en la posicion 1 no es el eserado", 1, res[1].intValue());
+		assertEquals("El valor en la posicion 2 no es el eserado", 3, res[2].intValue());
+		assertEquals("El valor en la posicion 3 no es el eserado", 0, res[3].intValue());
+		assertEquals("El valor en la posicion 4 no es el eserado", 1, res[4].intValue());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void test_sumar_dos_vectores_de_distinta_dimension() {
+		Integer[] a = {1, 1, 2, 0, 0};
+		Integer[] b = {2, 0, 1, 0};
+		red.sumar(a, b);
+	}
+	
+	private static Integer[][] cargarMatriz(String direccion) {
+		Scanner scanner = null;
+		Integer[][] aux = new Integer[PLAZAS][TRANSICIONES];
+		
+		try {
+			scanner = new Scanner(new File(direccion));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		while(scanner.hasNextInt()){
+			for(int i =0; i < aux.length; i++){
+				for(int j =0; j < aux[0].length; j++){
+					if(scanner.hasNextInt())
+						aux[i][j] = scanner.nextInt();
+				}
+			}
+		}
+		return aux;
 	}
 }

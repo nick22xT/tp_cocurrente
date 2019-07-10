@@ -7,13 +7,13 @@ import java.util.Scanner;
 public class RDP {
 	
 	private int plazas, transiciones;
-	private static final int[] M0 = {0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 30, 0, 30, 0, 0, 0, 1, 1, 60, 0, 0, 1, 1, 0, 1, 0, 0}; /* marcado inicial:contiene el estado inical de la red.*/
-	private int[] m_actual;
-	private int[][] insidencia;/* Contiene las relaciones entre las plazas y las transiciones*/
+	private static final Integer[] M0 = {0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 30, 0, 30, 0, 0, 0, 1, 1, 60, 0, 0, 0, 1, 0, 1, 0, 1, 5}; /* marcado inicial:contiene el estado inical de la red.*/
+	private Integer[] m_actual;
+	private Integer[][] insidencia;/* Contiene las relaciones entre las plazas y las transiciones*/
 	private boolean guardaT7;
 
 	public RDP() {
-		this.plazas = 27;
+		this.plazas = 28;
 		this.transiciones = 20;
 		this.m_actual = M0;
 		this.insidencia = this.cargarMatriz("src/main/resources/com/unc/concurrente/matrices/m_i.txt");
@@ -21,11 +21,18 @@ public class RDP {
 
 	}
 	
+	public RDP(Integer[][] incidencia, Integer[] marcado, int plazas, int transiciones) {
+		this.insidencia = incidencia;
+		this.plazas = plazas;
+		this.transiciones = transiciones;
+		this.m_actual = marcado;
+	}
+	
 	/**
 	 * Devuelve el estado actual de la Red de Petri.
 	 * @return El vector de estado de la Red de Petri.
 	 */
-	public int[] getM_actual(){
+	public Integer[] getM_actual(){
 		return m_actual;
 	}
 	
@@ -35,8 +42,8 @@ public class RDP {
 	 * @return true si la transicion pudo ser disparada, de lo contrario false.
 	 */
 	public boolean disparar(int transicion){
-		int[] cTransicion = obtenerColumna(transicion);
-		int[] aux = null;
+		Integer[] cTransicion = obtenerColumna(transicion);
+		Integer[] aux = null;
 			
 		aux = sumar(m_actual, cTransicion);
 		
@@ -63,7 +70,7 @@ public class RDP {
 		Boolean[] aux = new Boolean[transiciones];
 		
 		for(int i = 0; i < transiciones; i++){
-			int[] suma = sumar(m_actual, obtenerColumna(i));
+			Integer[] suma = sumar(m_actual, obtenerColumna(i));
 			
 			for(int j = 0; j < plazas; j++){
 				if(suma[j] < 0){
@@ -100,8 +107,8 @@ public class RDP {
 	 * @return un vector que contiene los valores de la columna de 
 	 * la matriz de insidencia correspondiente a la transicion deseada. 
 	 */
-	public int[] obtenerColumna(int transicion){
-		int[] aux = new int[plazas];
+	public Integer[] obtenerColumna(int transicion){
+		Integer[] aux = new Integer[plazas];
 		
         for(int i = 0; i < plazas; i++){
         	aux[i] = this.insidencia[i][transicion];
@@ -116,12 +123,11 @@ public class RDP {
 	 * @return un vector que contiene la suma coordenada a coordenada de los vectores a y b.
 	 * @throws Exception 
 	 */
-	public int[] sumar(int[] a, int[] b){
-		if(a.length != b.length){
+	public Integer[] sumar(Integer[] a, Integer[] b){
+		if(a.length != b.length)
 			throw new IllegalArgumentException("Las dimensiones de los vectores no son iguales");
-		}
 		
-		int[] aux = new int[a.length];
+		Integer[] aux = new Integer[a.length];
 		
 		for(int i = 0; i < aux.length; i++){
 			aux[i] = a[i] + b[i];
@@ -134,9 +140,9 @@ public class RDP {
 	 * @param direccion: la direccion en la que se encuentra el archivo.
 	 * @return una matriz cargada con los datos del archivo.
 	 */
-	private int[][] cargarMatriz(String direccion){
+	private Integer[][] cargarMatriz(String direccion){
 		Scanner scanner = null;
-		int [][] aux = new int [plazas][transiciones];
+		Integer[][] aux = new Integer[plazas][transiciones];
 		
 		try {
 			scanner = new Scanner(new File(direccion));
