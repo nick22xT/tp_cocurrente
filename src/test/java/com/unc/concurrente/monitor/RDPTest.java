@@ -2,30 +2,24 @@ package com.unc.concurrente.monitor;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import com.unc.concurrente.mocks.RDPMock;
 
 
 public class RDPTest {
 	
-	private static final int TRANSICIONES = 6;
-	private static final int PLAZAS = 9;
-	private static final Integer[] M0 = new Integer[]{1, 1, 0, 0, 0, 0, 1, 0, 5};
-	private static final Integer[][] INCIDENCIA = cargarMatriz("src/test/resources/m_i.txt");
 	private RDP red;
 	
 	@Before
-	public void cargarRDP() { 
-		red = new RDP(INCIDENCIA, M0, PLAZAS, TRANSICIONES);
+	public void setUp() { 
+		red = RDPMock.getRDP();
 	}
 	
 	@Test
 	public void test_obtener_sensibilizadas_sin_haber_disparado_la_red() {
-		Boolean[] sensibilizadas = red.sensibilizadas();
+		Boolean[] sensibilizadas = red.getSensibilizadas();
 		
         assertEquals("El valor en la posicion 0 no es el eserado", true, sensibilizadas[0]);
         assertEquals("El valor en la posicion 1 no es el eserado", false, sensibilizadas[1]);
@@ -38,7 +32,7 @@ public class RDPTest {
 	@Test
 	public void test_obtener_sensibilizadas_despues_de_disparar_transicion_cero() {
 		boolean resultadoDisparo = red.disparar(0);
-		Boolean[] sensibilizadas = red.sensibilizadas();
+		Boolean[] sensibilizadas = red.getSensibilizadas();
 		
 		assertEquals("El valor retornado no fue el esperado", true, resultadoDisparo);
 		
@@ -55,7 +49,7 @@ public class RDPTest {
 		boolean[] resultadosDeDisparo = new boolean[2];
 		resultadosDeDisparo[0] = red.disparar(0);
 		resultadosDeDisparo[1] = red.disparar(3);
-		Boolean[] sensibilizadas = red.sensibilizadas();
+		Boolean[] sensibilizadas = red.getSensibilizadas();
 		
 		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[0]);
 		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[1]);
@@ -146,26 +140,5 @@ public class RDPTest {
 		Integer[] a = {1, 1, 2, 0, 0};
 		Integer[] b = {2, 0, 1, 0};
 		red.sumar(a, b);
-	}
-	
-	private static Integer[][] cargarMatriz(String direccion) {
-		Scanner scanner = null;
-		Integer[][] aux = new Integer[PLAZAS][TRANSICIONES];
-		
-		try {
-			scanner = new Scanner(new File(direccion));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		while(scanner.hasNextInt()){
-			for(int i =0; i < aux.length; i++){
-				for(int j =0; j < aux[0].length; j++){
-					if(scanner.hasNextInt())
-						aux[i][j] = scanner.nextInt();
-				}
-			}
-		}
-		return aux;
 	}
 }

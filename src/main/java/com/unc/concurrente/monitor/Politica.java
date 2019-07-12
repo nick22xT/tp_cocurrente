@@ -4,23 +4,22 @@ import java.util.Random;
 
 import com.unc.concurrente.validations.ValidatePolitics;
 
-public class Politicas {
+public class Politica {
 	
-	private static Prioridades[] prioridades = new Prioridades[]{Prioridades.T6, Prioridades.T8, Prioridades.T0, Prioridades.T3,
+	private static final Prioridades[] PRIORIDADES = new Prioridades[]{Prioridades.T6, Prioridades.T8, Prioridades.T0, Prioridades.T3,
 			Prioridades.T1, Prioridades.T4, Prioridades.T2,  Prioridades.T5, Prioridades.T10, Prioridades.T16, Prioridades.T17,
 			Prioridades.T12, Prioridades.T14, Prioridades.T15, Prioridades.T11, Prioridades.T13, Prioridades.T18, Prioridades.T19,
 			Prioridades.T7, Prioridades.T9};
 
-	
-	private Politicas() {
+	private Politica() {
 		throw new IllegalStateException();
 	}
 
-	public static Integer cual(Boolean[] m, Cola[] colas, Integer[] integers){
+	public static Integer cual(Boolean[] m, Integer[] integers){
 		int queueNumber = 0;
 		for(int i = 0; i < m.length; i++) {
-			if(m[prioridades[i].getNumPrioridad()]) {
-				queueNumber = prioridades[i].getNumPrioridad();
+			if(m[PRIORIDADES[i].getNumPrioridad()]) {
+				queueNumber = PRIORIDADES[i].getNumPrioridad();
 				break;
 			}
 		}

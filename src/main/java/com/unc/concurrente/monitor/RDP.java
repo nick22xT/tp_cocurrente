@@ -66,7 +66,7 @@ public class RDP {
 	 * @return un vector con un true en el lugar correspondiente a una transicion sensibilizada, y false
 	 * en el lugar correspondiente a una transicion que NO esta sensibilizada.
 	 */
-	public Boolean[] sensibilizadas(){
+	public Boolean[] getSensibilizadas(){
 		Boolean[] aux = new Boolean[transiciones];
 		
 		for(int i = 0; i < transiciones; i++){

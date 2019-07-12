@@ -9,7 +9,7 @@ public class GestorDeMonitor {
 	private RDP rdp;
 	private Cola[] colas;
 	private boolean k;
-
+	
 	public GestorDeMonitor(RDP rdp) {
 		this.rdp = rdp;
 		this.mutex = new Semaphore(1, true);
@@ -24,25 +24,24 @@ public class GestorDeMonitor {
 	 * Intenta disparar una transicion
 	 * @param transicion: la transicion que se intenta disparar
 	 */
-	public void dispararTransicion(int transicion){
-		try{
+	public void dispararTransicion(int transicion) {
+		try {
 			mutex.acquire();
-		}catch(InterruptedException e){
+		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
 		
 		k = true;
-		while(k == true){
+		while(k == true) {
 			k = rdp.disparar(transicion); // disparar una transicion
 			
-			if(k == true){ //el hilo puede ejecutar su tarea
-				Boolean[] vs = rdp.sensibilizadas();
-				Boolean[] vc = getVc();
-				Boolean[] m = andOperation(vs, vc);
+			if(k == true) { //el hilo puede ejecutar su tarea
+				Boolean[] vectorDeSensibilizadas = rdp.getSensibilizadas();
+				Boolean[] vectorDeColas = getVectorDeColas();
+				Boolean[] m = operacionAnd(vectorDeSensibilizadas, vectorDeColas);
 				
-				if(cuantos(m) != 0) {
-					int queueNumber = Politicas.cual(m, colas, rdp.getM_actual());
-					colas[queueNumber].release();
+				if(contarSensibilizadas(m) != 0) {
+					colas[Politica.cual(m, rdp.getM_actual())].release();
 					return;
 				} else {
 					k = false;
@@ -61,7 +60,7 @@ public class GestorDeMonitor {
 	 * un hilo esperando para poder disparar dichas transiciones. 
 	 * @return un vector de booleanos
 	 */
-	Boolean[] getVc(){
+	Boolean[] getVectorDeColas() {
 		Boolean[] vc = new Boolean[colas.length];
 		
 		for(int i = 0; i < colas.length; i++){
@@ -72,18 +71,19 @@ public class GestorDeMonitor {
 	
 	/**
 	 * realiza la operancion logica AND coordenada a coordenada entre dos vectores
-	 * @param vs
-	 * @param vc
+	 * @param vectorDeSensibilizadas
+	 * @param vectorDeColas
 	 * @return un vector booleano con los resultados de la operacion AND.
 	 */
-	public Boolean[] andOperation(Boolean[] vs, Boolean[] vc){
-		if(vs.length != rdp.getTransiciones() || vc.length != rdp.getTransiciones() || vs.length != vc.length) {
+	public Boolean[] operacionAnd(Boolean[] vectorDeSensibilizadas, Boolean[] vectorDeColas) {
+		if(vectorDeSensibilizadas.length != rdp.getTransiciones() || vectorDeColas.length != rdp.getTransiciones() 
+				|| vectorDeSensibilizadas.length != vectorDeColas.length) {
 			throw new IllegalArgumentException();
 		}
 		Boolean[] vAnd = new Boolean[rdp.getTransiciones()];
 		
-		for(int i = 0; i < vAnd.length; i++){
-			vAnd[i] = vs[i] & vc[i];
+		for(int i = 0; i < vAnd.length; i++) {
+			vAnd[i] = vectorDeSensibilizadas[i] & vectorDeColas[i];
 		}
 		return vAnd;
 	}
@@ -93,7 +93,7 @@ public class GestorDeMonitor {
 	 * @param a
 	 * @return la cantidad de coordenadas que contienen el valor true
 	 */
-	public int cuantos(Boolean[] a){
+	public int contarSensibilizadas(Boolean[] a) {
 		return Arrays.asList(a).stream().filter(d -> d == true).collect(Collectors.toList()).size();
 	}
 }
