@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
+import com.unc.concurrente.utils.CommonMethods;
+
 public class GestorDeMonitor {
 	private Semaphore mutex;
 	private RDP rdp;
@@ -38,7 +40,7 @@ public class GestorDeMonitor {
 			if(k == true) { //el hilo puede ejecutar su tarea
 				Boolean[] vectorDeSensibilizadas = rdp.getSensibilizadas();
 				Boolean[] vectorDeColas = getVectorDeColas();
-				Boolean[] m = operacionAnd(vectorDeSensibilizadas, vectorDeColas);
+				Boolean[] m = CommonMethods.operacionAnd(vectorDeSensibilizadas, vectorDeColas);
 				
 				if(contarSensibilizadas(m) != 0) {
 					colas[Politica.cual(m, rdp.getM_actual())].release();
@@ -67,25 +69,6 @@ public class GestorDeMonitor {
 			vc[i] = colas[i].quienesEstan();
 		}
 		return vc;
-	}
-	
-	/**
-	 * realiza la operancion logica AND coordenada a coordenada entre dos vectores
-	 * @param vectorDeSensibilizadas
-	 * @param vectorDeColas
-	 * @return un vector booleano con los resultados de la operacion AND.
-	 */
-	public Boolean[] operacionAnd(Boolean[] vectorDeSensibilizadas, Boolean[] vectorDeColas) {
-		if(vectorDeSensibilizadas.length != rdp.getTransiciones() || vectorDeColas.length != rdp.getTransiciones() 
-				|| vectorDeSensibilizadas.length != vectorDeColas.length) {
-			throw new IllegalArgumentException();
-		}
-		Boolean[] vAnd = new Boolean[rdp.getTransiciones()];
-		
-		for(int i = 0; i < vAnd.length; i++) {
-			vAnd[i] = vectorDeSensibilizadas[i] & vectorDeColas[i];
-		}
-		return vAnd;
 	}
 	
 	/**

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.unc.concurrente.mocks.RDPMock;
+import com.unc.concurrente.monitor.RDP;
 
 
 public class RDPTest {
