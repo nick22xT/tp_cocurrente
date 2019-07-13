@@ -16,7 +16,7 @@ public class RDP {
 		this.plazas = 28;
 		this.transiciones = 20;
 		this.m_actual = M0;
-		this.insidencia = this.cargarMatriz("src/main/resources/com/unc/concurrente/matrices/m_i.txt");
+		this.insidencia = this.cargarMatriz("src/main/resources/m_i.txt");
 		this.guardaT7 = false;
 
 	}
