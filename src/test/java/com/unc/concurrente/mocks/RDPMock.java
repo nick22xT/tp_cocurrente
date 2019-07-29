@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import com.unc.concurrente.monitor.RDP;
+import com.unc.concurrente.rdp.RDP;
 
 public class RDPMock {
 	

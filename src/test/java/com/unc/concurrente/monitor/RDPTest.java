@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.unc.concurrente.mocks.RDPMock;
-import com.unc.concurrente.monitor.RDP;
+import com.unc.concurrente.rdp.RDP;
 
 
 public class RDPTest {
@@ -20,7 +20,7 @@ public class RDPTest {
 	
 	@Test
 	public void test_obtener_sensibilizadas_sin_haber_disparado_la_red() {
-		Boolean[] sensibilizadas = red.getSensibilizadas();
+		Boolean[] sensibilizadas = red.getSensibilizadasPorMarca();
 		
         assertEquals("El valor en la posicion 0 no es el eserado", true, sensibilizadas[0]);
         assertEquals("El valor en la posicion 1 no es el eserado", false, sensibilizadas[1]);
@@ -33,7 +33,7 @@ public class RDPTest {
 	@Test
 	public void test_obtener_sensibilizadas_despues_de_disparar_transicion_cero() {
 		boolean resultadoDisparo = red.disparar(0);
-		Boolean[] sensibilizadas = red.getSensibilizadas();
+		Boolean[] sensibilizadas = red.getSensibilizadasPorMarca();
 		
 		assertEquals("El valor retornado no fue el esperado", true, resultadoDisparo);
 		
@@ -50,7 +50,7 @@ public class RDPTest {
 		boolean[] resultadosDeDisparo = new boolean[2];
 		resultadosDeDisparo[0] = red.disparar(0);
 		resultadosDeDisparo[1] = red.disparar(3);
-		Boolean[] sensibilizadas = red.getSensibilizadas();
+		Boolean[] sensibilizadas = red.getSensibilizadasPorMarca();
 		
 		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[0]);
 		assertEquals("El valor retornado no fue el esperado", true, resultadosDeDisparo[1]);

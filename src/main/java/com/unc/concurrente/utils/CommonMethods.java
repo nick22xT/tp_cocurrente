@@ -23,7 +23,8 @@ public class CommonMethods {
 			Boolean[] vAnd = new Boolean[vectorUno.length];
 			
 			for(int i = 0; i < vAnd.length; i++) {
-				vAnd[i] = vectorUno[i] & vectorDos[i];
+				vAnd[i] =Boolean.logicalAnd(vectorUno[i].booleanValue(),
+						vectorDos[i].booleanValue());
 			}
 			return vAnd;
 		}

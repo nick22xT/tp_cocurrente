@@ -1,4 +1,4 @@
-package com.unc.concurrente.monitor;
+package com.unc.concurrente.rdp;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,29 +44,29 @@ public class RDP {
 	public boolean disparar(int transicion){
 		Integer[] cTransicion = obtenerColumna(transicion);
 		Integer[] aux = null;
+		Boolean[] sensibilizadasPorMarca = this.getSensibilizadasPorMarca();
 			
-		aux = sumar(m_actual, cTransicion);
-		
-		if(transicion == 7 && aux[transicion] > 0 && guardaT7 == false) {
-			guardaT7 = true;
-			return false;
-		}
-		
-		for(int i = 0; i < plazas; i++){
-			if(aux[i] < 0){
+		if(sensibilizadasPorMarca[transicion]) {
+			aux = sumar(m_actual, cTransicion);
+			
+			if(transicion == 7 && aux[transicion] > 0 && guardaT7 == false) {
+				guardaT7 = true;
 				return false;
 			}
+			
+			m_actual = aux;
+			return true;
+		} else {
+			return false;
 		}
-		m_actual = aux;
-		return true;
-	}
+ 	}
 	
 	/**
 	 * Genera un vector con todas las transiciones sensibilizadas de la Red de Petri.
 	 * @return un vector con un true en el lugar correspondiente a una transicion sensibilizada, y false
 	 * en el lugar correspondiente a una transicion que NO esta sensibilizada.
 	 */
-	public Boolean[] getSensibilizadas(){
+	public Boolean[] getSensibilizadasPorMarca(){
 		Boolean[] aux = new Boolean[transiciones];
 		
 		for(int i = 0; i < transiciones; i++){
@@ -140,7 +140,7 @@ public class RDP {
 	 * @param direccion: la direccion en la que se encuentra el archivo.
 	 * @return una matriz cargada con los datos del archivo.
 	 */
-	private Integer[][] cargarMatriz(String direccion){
+	protected Integer[][] cargarMatriz(String direccion){
 		Scanner scanner = null;
 		Integer[][] aux = new Integer[plazas][transiciones];
 		

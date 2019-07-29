@@ -1,4 +1,4 @@
-package com.unc.concurrente.monitor;
+package com.unc.concurrente.utils;
 
 public enum Prioridades {
 
