@@ -24,7 +24,7 @@ public class RampaBajada implements Runnable {
 	public void run() {
 		while(true) {
 			this.monitor.dispararTransicion(primeraTransicion);
-			System.out.printf(Thread.currentThread().getName() + " - Saliendo del %s.\n", piso);
+			System.out.printf(Thread.currentThread().getName() + " - Saliendo de la %s.\n", piso);
 			try {
 				TimeUnit.MILLISECONDS.sleep(500);
 			} catch (InterruptedException e) {
