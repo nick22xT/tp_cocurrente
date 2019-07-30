@@ -10,7 +10,7 @@ public class RDP {
 	private static final Integer[] M0 = {0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 30, 0, 30, 0, 0, 0, 1, 1, 60, 0, 0, 0, 1, 0, 1, 0, 1, 5}; /* marcado inicial:contiene el estado inical de la red.*/
 	private Integer[] m_actual;
 	private Integer[][] insidencia;/* Contiene las relaciones entre las plazas y las transiciones*/
-	private boolean guardaT7;
+	protected boolean guardaT7;
 
 	public RDP() {
 		this.plazas = 28;
@@ -48,12 +48,6 @@ public class RDP {
 			
 		if(sensibilizadasPorMarca[transicion]) {
 			aux = sumar(m_actual, cTransicion);
-			
-			if(transicion == 7 && aux[transicion] > 0 && guardaT7 == false) {
-				guardaT7 = true;
-				return false;
-			}
-			
 			m_actual = aux;
 			return true;
 		} else {

@@ -38,5 +38,4 @@ public class RampaSubida implements Runnable {
 		}
 		
 	}
-
 }

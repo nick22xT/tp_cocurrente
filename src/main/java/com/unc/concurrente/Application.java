@@ -3,7 +3,6 @@ package com.unc.concurrente;
 import java.io.IOException;
 
 import com.unc.concurrente.monitor.GestorDeMonitor;
-import com.unc.concurrente.rdp.RDP;
 import com.unc.concurrente.rdp.RDPTemporal;
 import com.unc.concurrente.recursos.Entrada;
 import com.unc.concurrente.recursos.RampaBajada;
@@ -14,7 +13,7 @@ import com.unc.concurrente.recursos.ZonaDeCaja;
 public class Application {
 
 	public static void main(String[] args) throws IOException {
-		GestorDeMonitor monitor = new GestorDeMonitor(new RDPTemporal());
+GestorDeMonitor monitor = new GestorDeMonitor(new RDPTemporal());
 		
 		Thread entradaUno = new Thread(new Entrada(monitor, 0, 3, "ENTRADA 1"));
 		Thread entradaDos = new Thread(new Entrada(monitor, 1, 4, "ENTRADA 2"));

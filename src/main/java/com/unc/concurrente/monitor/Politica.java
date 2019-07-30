@@ -28,7 +28,12 @@ public class Politica {
 		if((queueNumber == 14 || queueNumber == 15) && (m[14] && m[15]))
 			queueNumber = controlExit();
 		
-		ValidatePolitics.validatePolitics(integers, queueNumber);
+		try {
+			ValidatePolitics.validatePolitics(integers, queueNumber);
+		} catch(IllegalStateException e) {
+			return -1;
+		}
+		
 		return queueNumber;
 	}
 	

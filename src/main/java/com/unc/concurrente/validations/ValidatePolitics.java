@@ -7,5 +7,4 @@ public class ValidatePolitics {
 			throw new IllegalStateException();
 		}
 	}
-
 }

@@ -4,7 +4,7 @@ import com.unc.concurrente.utils.InstantsTime;
 
 public class TimerController {
 	private static final int INFINITO = 1000000000;
-	private Integer[] alfa = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0};
+	private Integer[] alfa = new Integer[]{2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0};
 	private Integer[] beta = new Integer[]{INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO,
 			                               INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO,
 			                               INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO};
@@ -44,7 +44,7 @@ public class TimerController {
 	/**
 	 * Comprueba si la transicion se encuentra dentro de su ventana de tiempo.
 	 *
-	 * @return	Boolean[]
+	 * @return	InstantsTime
 	 */
 	public InstantsTime testVentanaTiempo(Integer transicion) {
 		Long tiempo = System.currentTimeMillis()/1000 - tiempoDesdeSensibilizado[transicion];
@@ -65,8 +65,8 @@ public class TimerController {
 	 * @return	Tiempo que tiene que dormir el Thread hasta que se llegue al alfa de la transicion
 	 */
 	public Long getTimeSleep(int transicion) {
-		Long timeSleep = (long) alfa[transicion].intValue() 
-				- (System.currentTimeMillis()/1000) - tiempoDesdeSensibilizado[transicion];
+		Long timeSleep = (long) alfa[transicion].intValue() + 
+				tiempoDesdeSensibilizado[transicion] - (System.currentTimeMillis()/1000);
 		
 		if (timeSleep > 0)
 			return timeSleep; 

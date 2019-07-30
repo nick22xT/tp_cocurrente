@@ -14,7 +14,7 @@ public class RecursoMock implements Runnable {
 
 	@Override
 	public void run() {
-		monitor.dispararTransicion(transicion);
+		monitor.dispararTransicionSinTiempo(transicion);
 	}
 
 }

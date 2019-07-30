@@ -27,11 +27,16 @@ public class RDPTemporal extends RDP {
 				estadoDeTransicion = ShootingStates.SLEEP;
 				break;
 			case ENTRE:
-				super.disparar(transicion);
-				ValidateInvariats.ValidateInvariants(super.getM_actual());
-				temporizador.setNuevoTimeStamp(super.getSensibilizadasPorMarca());
-				temporizador.resetEsperando(transicion);
-				estadoDeTransicion = ShootingStates.SUCCESS;
+				if(!controlDeGuardas(transicion)) {
+					estadoDeTransicion = ShootingStates.FAIL;
+					break;
+				} else {
+					super.disparar(transicion);
+					ValidateInvariats.ValidateInvariants(super.getM_actual());
+					temporizador.setNuevoTimeStamp(super.getSensibilizadasPorMarca());
+					temporizador.resetEsperando(transicion);
+					estadoDeTransicion = ShootingStates.SUCCESS;
+				}
 				break;
 			case DESPUES:
 				estadoDeTransicion = ShootingStates.FAIL;
@@ -45,6 +50,13 @@ public class RDPTemporal extends RDP {
 	
 	public Long getTimeStamp(Integer transicion) {
 		return this.temporizador.getTimeSleep(transicion);
+	}
+	
+	public Boolean controlDeGuardas(Integer transicion) {
+		if(transicion == 7 && super.guardaT7 == false) {
+			super.guardaT7 = true;
+			return false;
+		} return true;
 	}
 	
 }
