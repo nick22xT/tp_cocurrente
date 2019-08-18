@@ -1,7 +1,9 @@
 package com.unc.concurrente;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import com.unc.concurrente.filewriter.ManejadorDeArchivo;
 import com.unc.concurrente.monitor.GestorDeMonitor;
 import com.unc.concurrente.rdp.RDPTemporal;
 import com.unc.concurrente.recursos.Entrada;
@@ -13,7 +15,8 @@ import com.unc.concurrente.recursos.ZonaDeCaja;
 public class Application {
 
 	public static void main(String[] args) throws IOException {
-GestorDeMonitor monitor = new GestorDeMonitor(new RDPTemporal());
+		ManejadorDeArchivo manejador = new ManejadorDeArchivo();
+        GestorDeMonitor monitor = new GestorDeMonitor(new RDPTemporal(), manejador);
 		
 		Thread entradaUno = new Thread(new Entrada(monitor, 0, 3, "ENTRADA 1"));
 		Thread entradaDos = new Thread(new Entrada(monitor, 1, 4, "ENTRADA 2"));
@@ -53,8 +56,31 @@ GestorDeMonitor monitor = new GestorDeMonitor(new RDPTemporal());
 		}
 		
 		entradaPisoDos.start();
+		
+		
+		try {
+			TimeUnit.SECONDS.sleep(30);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		entradaUno.interrupt();
+		entradaDos.interrupt();
+		entradaTres.interrupt();
+		
+		entradaPisoUno.interrupt();
+		entradaPisoDos.interrupt();
+		
+		rampaBajadaUno.interrupt();
+		rampaBajadaDos.interrupt();
+		
+		zonaDeCaja1.interrupt();
+		zonaDeCaja2.interrupt();
+		
+		salidaUno.interrupt();
+		salidaDos.interrupt();
+		
+		manejador.escribirArchivo();
 	}
-	
-	
 }
 

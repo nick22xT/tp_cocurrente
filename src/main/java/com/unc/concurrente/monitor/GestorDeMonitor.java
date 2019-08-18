@@ -9,33 +9,36 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.unc.concurrente.filewriter.ManejadorDeArchivo;
 import com.unc.concurrente.rdp.RDP;
 import com.unc.concurrente.rdp.RDPTemporal;
 import com.unc.concurrente.utils.ShootingStates;
 
 public class GestorDeMonitor {
 	private static final Logger LOG = LoggerFactory.getLogger(GestorDeMonitor.class); 
-	
+	private ManejadorDeArchivo manejador;
 	private Semaphore mutex;
 	private RDP rdp;
 	private RDPTemporal rdpTemp;
 	private Cola[] colas;
 	private boolean k;
 	
-	public GestorDeMonitor(RDP rdp) {
+	public GestorDeMonitor(RDP rdp, ManejadorDeArchivo manejador) {
 		this.rdp = rdp;
 		this.mutex = new Semaphore(1, true);
 		this.colas = new Cola[rdp.getTransiciones()];
+		this.manejador = manejador;
 		
 		for(int i = 0; i < colas.length; i++){
 			colas[i] = new Cola();
 		}
 	}
 	
-	public GestorDeMonitor(RDPTemporal rdpTemp) {
+	public GestorDeMonitor(RDPTemporal rdpTemp, ManejadorDeArchivo manejador) {
 		this.rdpTemp = rdpTemp;
 		this.mutex = new Semaphore(1, true);
 		this.colas = new Cola[rdpTemp.getTransiciones()];
+		this.manejador = manejador;
 		
 		for(int i = 0; i < colas.length; i++){
 			colas[i] = new Cola();
@@ -61,6 +64,7 @@ public class GestorDeMonitor {
 			
 			if(k == true) { //el hilo puede ejecutar su tarea
 				LOG.info("{}: exito al disparar transicion {}.", Thread.currentThread().getName(), transicion);
+				manejador.escribirBuffer(transicion);
 				Boolean[] vectorDeSensibilizadas = rdp.getSensibilizadasPorMarca();
 				Boolean[] vectorDeColas = getVectorDeColas();
 				Boolean[] m = operacionAnd(vectorDeSensibilizadas, vectorDeColas);
@@ -106,6 +110,7 @@ public class GestorDeMonitor {
 			switch(estadoDeDisparo) {
 			case SUCCESS: //Se disparo la transicion
 				LOG.info("{}: exito al disparar transicion {}.", Thread.currentThread().getName(), transicion);
+				manejador.escribirBuffer(transicion);
 				Boolean[] vectorDeSensibilizadas = rdpTemp.getSensibilizadasPorMarca();
 				Boolean[] vectorDeColas = getVectorDeColas();
 				Boolean[] m = operacionAnd(vectorDeSensibilizadas, vectorDeColas);

@@ -3,7 +3,6 @@ package com.unc.concurrente.monitor;
 import java.util.Random;
 
 import com.unc.concurrente.utils.Prioridades;
-import com.unc.concurrente.validations.ValidatePolitics;
 
 public class Politica {
 	
@@ -16,7 +15,7 @@ public class Politica {
 		throw new IllegalStateException();
 	}
 
-	public static Integer cual(Boolean[] m, Integer[] integers){
+	public static Integer cual(Boolean[] m, Integer[] marcado){
 		int queueNumber = 0;
 		for(int i = 0; i < m.length; i++) {
 			if(m[PRIORIDADES[i].getNumPrioridad()]) {
@@ -28,13 +27,7 @@ public class Politica {
 		if((queueNumber == 14 || queueNumber == 15) && (m[14] && m[15]))
 			queueNumber = controlExit();
 		
-		try {
-			ValidatePolitics.validatePolitics(integers, queueNumber);
-		} catch(IllegalStateException e) {
-			return -1;
-		}
-		
-		return queueNumber;
+		return (marcado[10] != 0 && queueNumber == 7) ? -1 : queueNumber; 
 	}
 	
 

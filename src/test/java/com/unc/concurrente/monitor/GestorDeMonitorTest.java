@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.unc.concurrente.filewriter.ManejadorDeArchivo;
 import com.unc.concurrente.mocks.RDPMock;
 import com.unc.concurrente.mocks.RecursoMock;
 import com.unc.concurrente.monitor.GestorDeMonitor;
@@ -16,10 +17,11 @@ import com.unc.concurrente.monitor.GestorDeMonitor;
 public class GestorDeMonitorTest {
 	
     private GestorDeMonitor monitor;
+    ManejadorDeArchivo manejador = new ManejadorDeArchivo();
     
     @Before
     public void setUp() {
-    	monitor = new GestorDeMonitor(RDPMock.getRDP());
+    	monitor = new GestorDeMonitor(RDPMock.getRDP(), manejador);
     }
     
     @Test

@@ -13,41 +13,17 @@ import com.unc.concurrente.utils.InstantsTime;
  */
 public class TimerController {
 	private static final int INFINITO = 1000000000;
+	private boolean[] esperando;
+	private long[] tiempoDesdeSensibilizado;
 	private Integer[] alfa = new Integer[]{2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0};
 	private Integer[] beta = new Integer[]{INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO,
 			                               INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO,
 			                               INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO};
-	private boolean[] esperando;
-	private long[] tiempoDesdeSensibilizado;
-	private int totalTransiciones;
 	
 
 	public TimerController(int totalTansiciones) {
-		this.totalTransiciones = totalTansiciones;
 		this.tiempoDesdeSensibilizado = new long[totalTansiciones];
 		this.esperando = new boolean[totalTansiciones];
-	}
-	
-	/**
-	 * Comprueba que transiciones se encuentran dentro de su ventana de tiempo.
-	 *
-	 * @return	Boolean[]
-	 */
-	public Boolean[] testVentanaTiempo() {
-		Boolean[] dentroDelIntervalo = new Boolean[totalTransiciones];
-		Long currentTime = System.currentTimeMillis()/1000;
-		Long tiempo;
-		
-		for(int i = 0; i < dentroDelIntervalo.length; i++) {
-			tiempo = currentTime - tiempoDesdeSensibilizado[i];
-			
-			if (tiempo < alfa[i] || tiempo > beta[i]) { 
-				dentroDelIntervalo[i] = false; 
-			} else { 
-				dentroDelIntervalo[i] = true; 
-			}
-		}
-		return dentroDelIntervalo;
 	}
 	
 	/**
@@ -77,10 +53,7 @@ public class TimerController {
 		Long timeSleep = (long) alfa[transicion].intValue() + 
 				tiempoDesdeSensibilizado[transicion] - (System.currentTimeMillis()/1000);
 		
-		if (timeSleep > 0)
-			return timeSleep; 
-		else
-			return 0L; 
+		return timeSleep > 0 ? timeSleep : 0L; 
 	}
 	
 	/**
