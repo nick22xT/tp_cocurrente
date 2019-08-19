@@ -3,103 +3,70 @@ package com.unc.concurrente.monitor;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.unc.concurrente.Application;
 
 public class MonitorSystemTest {
 	
-	private String FILE_PATH = "D:\\2do Semestre 2018\\Programacion Concurrente\\Trabajo Final\\Tabajo Final Monitor\\src\\main\\resources\\transicionLog.txt";
-	private FileReader archivo;
-	private String[] arregloSecuencia;
+	private static final String[] T_INVARIANTE_UNO={"0","3","6","8","10","12","14","16","18"};
+	private static final String[] T_INVARIANTE_DOS={"0","3","7","9","11","13","15","16","18"};
+	private static final String FILE_PATH = "D:\\2do Semestre 2018\\Programacion Concurrente\\Trabajo Final\\Tabajo Final Monitor\\src\\main\\resources\\transicionLog.txt";
+	private String[] arraySecuence;
 	
-	String[] tInvariantes1={"0","3","6","8","10","12","14","16","18"};
-	String[] tInvariantes2={"0","3","7","9","11","13","15","16","18"};
 	
-	@Before
-	public void correr() {
 	
+	@Test
+	public void verificarInvariantes() {
+		this.iniciarMonitor();
+		
+		assertTrue(recorrerArreglo(T_INVARIANTE_UNO));
+		assertTrue(recorrerArreglo(T_INVARIANTE_DOS)); 
+	}
+	
+	private void iniciarMonitor() {
 		try {
 			Application.main(null);
 			TimeUnit.SECONDS.sleep(300);
 			Application.interrumpirMonitor();
 		} catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		try {
-			archivo = new FileReader("D:\\2do Semestre 2018\\Programacion Concurrente\\Trabajo Final\\Tabajo Final Monitor\\src\\main\\resources\\transicionLog.txt");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		BufferedReader buffer = new BufferedReader(archivo);
-		try {
-			String secuencia=buffer.readLine();
-			arregloSecuencia = secuencia.split("-");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
 	
-	@Test
-	public void verificarInvariantes()
-	{
-		assertTrue(recorrerArreglo(tInvariantes1));
-		assertTrue(recorrerArreglo(tInvariantes2)); 
-	}
-	
-	public boolean recorrerArreglo(String[] arreglo) // devuelve true si se encontro la secuencia
-	{	
-		arregloSecuencia = leerArchivo().split("-");
-		int cursor=0;
+	private boolean recorrerArreglo(String[] array) { // devuelve true si se encontro la secuencia
+		int cursor = 0;
+		arraySecuence = this.leerArchivo().split("-");
 
-		for(int i=0; i<arregloSecuencia.length; i++)
-		{
-			if(arregloSecuencia[i].equals(arreglo[cursor]))
-			{
+		for(int i = 0; i < arraySecuence.length; i++) {
+			if(arraySecuence[i].equals(array[cursor])) {
 				cursor++;
-				
-				if(cursor==arreglo.length)
-				{
+				if(cursor == array.length) {
 					return true;
 				}
 			}
 		}
-		
 		return false;
 	}
 	
-	public String leerArchivo() {
+	private String leerArchivo() {
+		FileReader file = null;
+		BufferedReader buffer = null;
+		String secuence = null;
+		
 		try {
-			archivo = new FileReader("D:\\2do Semestre 2018\\Programacion Concurrente\\Trabajo Final\\Tabajo Final Monitor\\src\\main\\resources\\transicionLog.txt");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			file = new FileReader(FILE_PATH);
+			buffer = new BufferedReader(file);
+			secuence = buffer.readLine();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		BufferedReader buffer = new BufferedReader(archivo);
-		try {
-			return buffer.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return secuence;
 	}
 
 }
