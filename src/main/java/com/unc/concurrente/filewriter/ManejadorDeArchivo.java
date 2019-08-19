@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ManejadorDeArchivo {
-	private static final String FILE_PATH = "D:\\2do Semestre 2018\\Programacion Concurrente\\Trabajo Final\\Tabajo Final Monitor\\src\\main\\resources\\transicionLog.txt";
+	private static final String FILE_PATH = "src\\test\\resources\\transicionLog.txt";
 	private StringBuffer buffer;
 	private File file;
 

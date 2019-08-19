@@ -1,4 +1,5 @@
-package com.unc.concurrente.monitor;
+package com.unc.concurrente;
+
 
 import static org.junit.Assert.assertTrue;
 
@@ -15,7 +16,7 @@ public class MonitorSystemTest {
 	
 	private static final String[] T_INVARIANTE_UNO={"0","3","6","8","10","12","14","16","18"};
 	private static final String[] T_INVARIANTE_DOS={"0","3","7","9","11","13","15","16","18"};
-	private static final String FILE_PATH = "D:\\2do Semestre 2018\\Programacion Concurrente\\Trabajo Final\\Tabajo Final Monitor\\src\\main\\resources\\transicionLog.txt";
+	private static final String FILE_PATH = "src\\test\\resources\\transicionLog.txt";
 	private String[] arraySecuence;
 	
 	
@@ -31,7 +32,7 @@ public class MonitorSystemTest {
 	private void iniciarMonitor() {
 		try {
 			Application.main(null);
-			TimeUnit.SECONDS.sleep(300);
+			TimeUnit.SECONDS.sleep(500);
 			Application.interrumpirMonitor();
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();

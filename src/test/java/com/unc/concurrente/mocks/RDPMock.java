@@ -11,7 +11,7 @@ public class RDPMock {
 	private static final int TRANSICIONES = 6;
 	private static final int PLAZAS = 9;
 	private static final Integer[] M0 = new Integer[]{1, 1, 0, 0, 0, 0, 1, 0, 5};
-	private static final Integer[][] INCIDENCIA = cargarMatriz("src/test/resources/m_i.txt", PLAZAS, TRANSICIONES);
+	private static final Integer[][] INCIDENCIA = cargarMatriz("src/test/resources/m_i_test.txt", PLAZAS, TRANSICIONES);
 	
 	public static RDP getRDP() {
 		return new RDP(INCIDENCIA, M0, PLAZAS, TRANSICIONES);

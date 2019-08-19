@@ -1,6 +1,7 @@
 package com.unc.concurrente;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import com.unc.concurrente.filewriter.ManejadorDeArchivo;
 import com.unc.concurrente.monitor.GestorDeMonitor;
@@ -12,27 +13,40 @@ import com.unc.concurrente.recursos.Salida;
 import com.unc.concurrente.recursos.ZonaDeCaja;
 
 public class Application {
-	static ManejadorDeArchivo manejador = new ManejadorDeArchivo();
-    static GestorDeMonitor monitor = new GestorDeMonitor(new RDPTemporal(), manejador);
 	
-	static Thread entradaUno = new Thread(new Entrada(monitor, 0, 3, "ENTRADA 1"));
-	static Thread entradaDos = new Thread(new Entrada(monitor, 1, 4, "ENTRADA 2"));
-	static Thread entradaTres = new Thread(new Entrada(monitor, 2, 5, "ENTRADA 3"));
-	
-	static Thread entradaPisoUno = new Thread(new RampaSubida(monitor, 6, 8, "RAMPA 1", "PISO 1"));
-	static Thread entradaPisoDos = new Thread(new RampaSubida(monitor, 7, 9, "RAMPA 2", "PISO 2"));
-			
-	static Thread rampaBajadaUno = new Thread(new RampaBajada(monitor, 10, 12, "PISO 1", "RAMPA 1"));
-	static Thread rampaBajadaDos = new Thread(new RampaBajada(monitor, 11, 13, "PISO 2", "RAMPA 2"));
-	
-	static Thread zonaDeCaja1 = new Thread(new ZonaDeCaja(monitor, 14, "SALIDA 1"));
-	static Thread zonaDeCaja2 = new Thread(new ZonaDeCaja(monitor, 15, "SALIDA 2"));
-	
-	static Thread salidaUno = new Thread(new Salida(monitor, 16, 18, "SALIDA 1"));
-	static Thread salidaDos = new Thread(new Salida(monitor, 17, 19, "SALIDA 2"));
+	private static ManejadorDeArchivo manejador;
+    private static GestorDeMonitor monitor;
+	private static Thread entradaUno;
+	private static Thread entradaDos;
+	private static Thread entradaTres;
+	private static Thread entradaPisoUno;
+	private static Thread entradaPisoDos;
+	private static Thread rampaBajadaUno;
+	private static Thread rampaBajadaDos;
+	private static Thread zonaDeCaja1;
+	private static Thread zonaDeCaja2;
+	private static Thread salidaUno;
+	private static Thread salidaDos;
 
 	public static void main(String[] args) throws IOException {
+		manejador = new ManejadorDeArchivo();
+	    monitor = new GestorDeMonitor(new RDPTemporal(), manejador);
 		
+		entradaUno = new Thread(new Entrada(monitor, 0, 3, "ENTRADA 1"));
+		entradaDos = new Thread(new Entrada(monitor, 1, 4, "ENTRADA 2"));
+		entradaTres = new Thread(new Entrada(monitor, 2, 5, "ENTRADA 3"));
+		
+		entradaPisoUno = new Thread(new RampaSubida(monitor, 6, 8, "RAMPA 1", "PISO 1"));
+		entradaPisoDos = new Thread(new RampaSubida(monitor, 7, 9, "RAMPA 2", "PISO 2"));
+				
+		rampaBajadaUno = new Thread(new RampaBajada(monitor, 10, 12, "PISO 1", "RAMPA 1"));
+		rampaBajadaDos = new Thread(new RampaBajada(monitor, 11, 13, "PISO 2", "RAMPA 2"));
+		
+		zonaDeCaja1 = new Thread(new ZonaDeCaja(monitor, 14, "SALIDA 1"));
+		zonaDeCaja2 = new Thread(new ZonaDeCaja(monitor, 15, "SALIDA 2"));
+		
+		salidaUno = new Thread(new Salida(monitor, 16, 18, "SALIDA 1"));
+		salidaDos = new Thread(new Salida(monitor, 17, 19, "SALIDA 2"));
 		
 		entradaUno.start();
 		entradaDos.start();
@@ -50,7 +64,7 @@ public class Application {
 		salidaDos.start();
 		
 		try {
-			Thread.sleep(5000);
+			TimeUnit.SECONDS.sleep(5);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -59,21 +73,69 @@ public class Application {
 	}
 	
 	public static void interrumpirMonitor() {
-		entradaUno.interrupt();
-		entradaDos.interrupt();
-		entradaTres.interrupt();
+		try {
+			entradaUno.interrupt();
+		} catch(Exception e) {
+			
+		}
 		
-		entradaPisoUno.interrupt();
-		entradaPisoDos.interrupt();
+        try {
+			entradaDos.interrupt();
+		} catch(Exception e) {
+			
+		}
+        
+        try {
+			entradaTres.interrupt();
+		} catch(Exception e) {
+			
+		}
 		
-		rampaBajadaUno.interrupt();
-		rampaBajadaDos.interrupt();
+        try {
+			entradaPisoUno.interrupt();
+		} catch(Exception e) {
+			
+		}
 		
-		zonaDeCaja1.interrupt();
-		zonaDeCaja2.interrupt();
+        try {
+			entradaPisoDos.interrupt();
+		} catch(Exception e) {
+			
+		}
+
+		try {
+			rampaBajadaUno.interrupt();
+		} catch(Exception e) {
+			
+		}
+		try {
+			rampaBajadaDos.interrupt();
+		} catch(Exception e) {
+			
+		}
 		
-		salidaUno.interrupt();
-		salidaDos.interrupt();
+		try {
+			zonaDeCaja1.interrupt();
+		} catch(Exception e) {
+			
+		}
+		
+		try {
+			zonaDeCaja2.interrupt();
+		} catch(Exception e) {
+			
+		}
+		
+		try {
+			salidaUno.interrupt();
+		} catch(Exception e) {
+			
+		}
+		try {
+			salidaDos.interrupt();
+		} catch(Exception e) {
+			
+		}
 		
 		manejador.escribirArchivo();
 	}
