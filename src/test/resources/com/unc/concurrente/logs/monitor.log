@@ -1,0 +1,372 @@
+2019-08-20 19:38:47,684  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,685  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:47,687  INFO   [GestorDeMonitor] Thread-0: intento disparar la transicion 0 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:47,687  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,687  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-1: intento disparar la transicion 1 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-2: intento disparar la transicion 2 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,688  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-6: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-6: intenta disparar transicion 11. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-6: no se pudo disparar la transicion 11, preparado para encolarse. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-9: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-9: intenta disparar transicion 16. 
+2019-08-20 19:38:47,689  INFO   [GestorDeMonitor] Thread-9: no se pudo disparar la transicion 16, preparado para encolarse. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-8: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-8: intenta disparar transicion 15. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-8: no se pudo disparar la transicion 15, preparado para encolarse. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-7: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-7: intenta disparar transicion 14. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-7: no se pudo disparar la transicion 14, preparado para encolarse. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-10: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 17. 
+2019-08-20 19:38:47,690  INFO   [GestorDeMonitor] Thread-10: no se pudo disparar la transicion 17, preparado para encolarse. 
+2019-08-20 19:38:49,689  INFO   [GestorDeMonitor] Thread-1: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:49,689  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:49,690  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 1. 
+2019-08-20 19:38:49,800  INFO   [GestorDeMonitor] Thread-1: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:49,800  INFO   [GestorDeMonitor] Thread-0: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:49,800  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:49,800  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 0. 
+2019-08-20 19:38:49,801  INFO   [GestorDeMonitor] Thread-0: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:49,801  INFO   [GestorDeMonitor] Thread-2: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:49,816  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:49,817  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 2. 
+2019-08-20 19:38:49,817  INFO   [GestorDeMonitor] Thread-2: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:50,304  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,304  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 4. 
+2019-08-20 19:38:50,304  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 4. 
+2019-08-20 19:38:50,305  INFO   [GestorDeMonitor] Thread-1: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:38:50,305  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:50,305  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:50,305  INFO   [GestorDeMonitor] Thread-3: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:50,306  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,306  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 3. 
+2019-08-20 19:38:50,306  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 3. 
+2019-08-20 19:38:50,306  INFO   [GestorDeMonitor] Thread-0: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:50,318  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,318  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 5. 
+2019-08-20 19:38:50,318  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 5. 
+2019-08-20 19:38:50,318  INFO   [GestorDeMonitor] Thread-2: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:50,806  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,806  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:50,806  INFO   [GestorDeMonitor] Thread-1: intento disparar la transicion 1 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:50,807  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,807  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:50,808  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:50,808  INFO   [GestorDeMonitor] Thread-3: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:38:50,808  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:50,809  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:50,809  INFO   [GestorDeMonitor] Thread-5: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:50,810  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,810  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:50,811  INFO   [GestorDeMonitor] Thread-0: intento disparar la transicion 0 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:50,819  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:50,819  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:50,819  INFO   [GestorDeMonitor] Thread-2: intento disparar la transicion 2 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:51,311  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:51,311  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:51,311  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:51,312  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 15, saliendo del monitor. 
+2019-08-20 19:38:51,312  INFO   [GestorDeMonitor] Thread-8: intenta disparar transicion 15. 
+2019-08-20 19:38:51,312  INFO   [GestorDeMonitor] Thread-8: exito al disparar transicion 15. 
+2019-08-20 19:38:51,312  INFO   [GestorDeMonitor] Thread-8: se saca hilo de cola para disparar transicion 17, saliendo del monitor. 
+2019-08-20 19:38:51,313  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 17. 
+2019-08-20 19:38:51,313  INFO   [GestorDeMonitor] Thread-10: intento disparar la transicion 17 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:51,313  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:51,313  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:51,313  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:51,313  INFO   [GestorDeMonitor] Thread-3: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:51,815  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:51,815  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:51,815  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:51,816  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:51,816  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:51,816  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:51,816  INFO   [GestorDeMonitor] Thread-3: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:38:51,816  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:51,817  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:51,817  INFO   [GestorDeMonitor] Thread-5: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:51,818  INFO   [GestorDeMonitor] Thread-8: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:51,818  INFO   [GestorDeMonitor] Thread-8: intenta disparar transicion 15. 
+2019-08-20 19:38:51,818  INFO   [GestorDeMonitor] Thread-8: no se pudo disparar la transicion 15, preparado para encolarse. 
+2019-08-20 19:38:52,318  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:52,318  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:52,318  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:38:52,320  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:52,320  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:52,321  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:52,321  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:38:52,321  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:52,321  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:52,321  INFO   [GestorDeMonitor] Thread-3: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:52,684  INFO   [GestorDeMonitor] Thread-4: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:52,684  INFO   [GestorDeMonitor] Thread-4: intenta disparar transicion 7. 
+2019-08-20 19:38:52,684  INFO   [GestorDeMonitor] Thread-4: no se pudo disparar la transicion 7, preparado para encolarse. 
+2019-08-20 19:38:52,807  INFO   [GestorDeMonitor] Thread-1: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:52,807  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:52,807  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 1. 
+2019-08-20 19:38:52,807  INFO   [GestorDeMonitor] Thread-1: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:52,812  INFO   [GestorDeMonitor] Thread-0: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:52,812  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:52,812  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 0. 
+2019-08-20 19:38:52,812  INFO   [GestorDeMonitor] Thread-0: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:52,820  INFO   [GestorDeMonitor] Thread-2: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:52,820  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:52,820  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 2. 
+2019-08-20 19:38:52,820  INFO   [GestorDeMonitor] Thread-2: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-3: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:38:52,822  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:52,823  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:52,823  INFO   [GestorDeMonitor] Thread-5: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:53,308  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,308  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 4. 
+2019-08-20 19:38:53,308  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 4. 
+2019-08-20 19:38:53,313  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,313  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 3. 
+2019-08-20 19:38:53,313  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 3. 
+2019-08-20 19:38:53,321  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,321  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 5. 
+2019-08-20 19:38:53,321  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 5. 
+2019-08-20 19:38:53,322  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,322  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:53,322  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:38:53,323  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,323  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:53,323  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:53,323  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:38:53,323  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:53,323  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:53,809  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,809  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:53,809  INFO   [GestorDeMonitor] Thread-1: intento disparar la transicion 1 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:53,814  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,814  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:53,814  INFO   [GestorDeMonitor] Thread-0: intento disparar la transicion 0 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:53,821  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,821  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:53,821  INFO   [GestorDeMonitor] Thread-2: intento disparar la transicion 2 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-3: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:53,824  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:54,314  INFO   [GestorDeMonitor] Thread-10: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:54,314  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 17. 
+2019-08-20 19:38:54,314  INFO   [GestorDeMonitor] Thread-10: exito al disparar transicion 17. 
+2019-08-20 19:38:54,314  INFO   [GestorDeMonitor] Thread-10: se saca hilo de cola para disparar transicion 15, saliendo del monitor. 
+2019-08-20 19:38:54,314  INFO   [GestorDeMonitor] Thread-8: intenta disparar transicion 15. 
+2019-08-20 19:38:54,314  INFO   [GestorDeMonitor] Thread-8: exito al disparar transicion 15. 
+2019-08-20 19:38:54,325  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:54,325  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:54,325  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:54,325  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:54,325  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:54,325  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:54,816  INFO   [GestorDeMonitor] Thread-8: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:54,816  INFO   [GestorDeMonitor] Thread-8: intenta disparar transicion 15. 
+2019-08-20 19:38:54,816  INFO   [GestorDeMonitor] Thread-8: no se pudo disparar la transicion 15, preparado para encolarse. 
+2019-08-20 19:38:54,817  INFO   [GestorDeMonitor] Thread-10: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:54,817  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 19. 
+2019-08-20 19:38:54,817  INFO   [GestorDeMonitor] Thread-10: exito al disparar transicion 19. 
+2019-08-20 19:38:54,826  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:54,826  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:54,826  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:54,826  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:54,826  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:54,826  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:55,317  INFO   [GestorDeMonitor] Thread-10: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:55,317  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 17. 
+2019-08-20 19:38:55,317  INFO   [GestorDeMonitor] Thread-10: intento disparar la transicion 17 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:55,330  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:55,331  INFO   [GestorDeMonitor] Thread-3: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:55,810  INFO   [GestorDeMonitor] Thread-1: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:55,810  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:55,810  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 1. 
+2019-08-20 19:38:55,810  INFO   [GestorDeMonitor] Thread-1: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:55,815  INFO   [GestorDeMonitor] Thread-0: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:55,815  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:55,815  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 0. 
+2019-08-20 19:38:55,815  INFO   [GestorDeMonitor] Thread-0: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:55,822  INFO   [GestorDeMonitor] Thread-2: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:55,822  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:55,822  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 2. 
+2019-08-20 19:38:55,822  INFO   [GestorDeMonitor] Thread-2: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:55,831  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:55,831  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:55,831  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-3: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:55,832  INFO   [GestorDeMonitor] Thread-5: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:56,311  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,311  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 4. 
+2019-08-20 19:38:56,311  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 4. 
+2019-08-20 19:38:56,315  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,315  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 3. 
+2019-08-20 19:38:56,315  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 3. 
+2019-08-20 19:38:56,323  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,323  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 5. 
+2019-08-20 19:38:56,323  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 5. 
+2019-08-20 19:38:56,333  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,333  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:56,333  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:56,333  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,333  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:56,333  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:56,812  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,812  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:56,812  INFO   [GestorDeMonitor] Thread-1: intento disparar la transicion 1 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:56,816  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,816  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:56,816  INFO   [GestorDeMonitor] Thread-0: intento disparar la transicion 0 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:56,824  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,824  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:56,824  INFO   [GestorDeMonitor] Thread-2: intento disparar la transicion 2 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:56,834  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,834  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:56,834  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:56,835  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:56,835  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:56,835  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:56,835  INFO   [GestorDeMonitor] Thread-3: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:38:56,835  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:56,835  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-10: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 17. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-10: exito al disparar transicion 17. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-10: se saca hilo de cola para disparar transicion 14, saliendo del monitor. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-7: intenta disparar transicion 14. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-7: exito al disparar transicion 14. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-7: se saca hilo de cola para disparar transicion 16, saliendo del monitor. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-9: intenta disparar transicion 16. 
+2019-08-20 19:38:57,318  INFO   [GestorDeMonitor] Thread-9: intento disparar la transicion 16 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:57,338  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:57,819  INFO   [GestorDeMonitor] Thread-7: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:57,819  INFO   [GestorDeMonitor] Thread-7: intenta disparar transicion 14. 
+2019-08-20 19:38:57,819  INFO   [GestorDeMonitor] Thread-7: no se pudo disparar la transicion 14, preparado para encolarse. 
+2019-08-20 19:38:57,819  INFO   [GestorDeMonitor] Thread-10: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:57,819  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 19. 
+2019-08-20 19:38:57,819  INFO   [GestorDeMonitor] Thread-10: exito al disparar transicion 19. 
+2019-08-20 19:38:57,839  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:57,839  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:57,839  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:57,839  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:57,839  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:57,839  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:38:58,320  INFO   [GestorDeMonitor] Thread-10: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:58,320  INFO   [GestorDeMonitor] Thread-10: intenta disparar transicion 17. 
+2019-08-20 19:38:58,320  INFO   [GestorDeMonitor] Thread-10: no se pudo disparar la transicion 17, preparado para encolarse. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:58,340  INFO   [GestorDeMonitor] Thread-3: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:58,812  INFO   [GestorDeMonitor] Thread-1: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:58,812  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:58,812  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 1. 
+2019-08-20 19:38:58,812  INFO   [GestorDeMonitor] Thread-1: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:58,817  INFO   [GestorDeMonitor] Thread-0: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:58,817  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:58,817  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 0. 
+2019-08-20 19:38:58,817  INFO   [GestorDeMonitor] Thread-0: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:58,825  INFO   [GestorDeMonitor] Thread-2: despierta del sleep, toma el mutex. 
+2019-08-20 19:38:58,825  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:58,825  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 2. 
+2019-08-20 19:38:58,825  INFO   [GestorDeMonitor] Thread-2: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-5: no se pudo disparar la transicion 10, preparado para encolarse. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:38:58,841  INFO   [GestorDeMonitor] Thread-3: no hay hilos para despertar, saliendo del monitor. 
+2019-08-20 19:38:59,313  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,313  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 4. 
+2019-08-20 19:38:59,313  INFO   [GestorDeMonitor] Thread-1: exito al disparar transicion 4. 
+2019-08-20 19:38:59,319  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,319  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 3. 
+2019-08-20 19:38:59,319  INFO   [GestorDeMonitor] Thread-0: exito al disparar transicion 3. 
+2019-08-20 19:38:59,326  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,326  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 5. 
+2019-08-20 19:38:59,326  INFO   [GestorDeMonitor] Thread-2: exito al disparar transicion 5. 
+2019-08-20 19:38:59,342  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,342  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:38:59,342  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:38:59,814  INFO   [GestorDeMonitor] Thread-1: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,814  INFO   [GestorDeMonitor] Thread-1: intenta disparar transicion 1. 
+2019-08-20 19:38:59,814  INFO   [GestorDeMonitor] Thread-1: intento disparar la transicion 1 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:59,822  INFO   [GestorDeMonitor] Thread-0: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,822  INFO   [GestorDeMonitor] Thread-0: intenta disparar transicion 0. 
+2019-08-20 19:38:59,822  INFO   [GestorDeMonitor] Thread-0: intento disparar la transicion 0 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:59,827  INFO   [GestorDeMonitor] Thread-2: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,827  INFO   [GestorDeMonitor] Thread-2: intenta disparar transicion 2. 
+2019-08-20 19:38:59,827  INFO   [GestorDeMonitor] Thread-2: intento disparar la transicion 2 antes del alfa, preparado para hacer sleep. 
+2019-08-20 19:38:59,843  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:38:59,843  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 8. 
+2019-08-20 19:38:59,843  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 8. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-9: despierta del sleep, toma el mutex. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-9: intenta disparar transicion 16. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-9: exito al disparar transicion 16. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-9: se saca hilo de cola para disparar transicion 14, saliendo del monitor. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-7: intenta disparar transicion 14. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-7: exito al disparar transicion 14. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-7: se saca hilo de cola para disparar transicion 10, saliendo del monitor. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 10. 
+2019-08-20 19:39:00,319  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 10. 
+2019-08-20 19:39:00,344  INFO   [GestorDeMonitor] Thread-3: toma el mutex, ingresa al monitor. 
+2019-08-20 19:39:00,344  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:39:00,344  INFO   [GestorDeMonitor] Thread-3: no se pudo disparar la transicion 6, preparado para encolarse. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-9: toma el mutex, ingresa al monitor. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-9: intenta disparar transicion 18. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-9: exito al disparar transicion 18. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-5: toma el mutex, ingresa al monitor. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-5: intenta disparar transicion 12. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-5: exito al disparar transicion 12. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-5: se saca hilo de cola para disparar transicion 6, saliendo del monitor. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-3: intenta disparar transicion 6. 
+2019-08-20 19:39:00,820  INFO   [GestorDeMonitor] Thread-3: exito al disparar transicion 6. 
+2019-08-20 19:39:00,821  INFO   [GestorDeMonitor] Thread-7: toma el mutex, ingresa al monitor. 
+2019-08-20 19:39:00,821  INFO   [GestorDeMonitor] Thread-7: intenta disparar transicion 14. 
+2019-08-20 19:39:00,821  INFO   [GestorDeMonitor] Thread-7: no se pudo disparar la transicion 14, preparado para encolarse. 
