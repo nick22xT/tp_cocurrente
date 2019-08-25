@@ -17,18 +17,18 @@ import com.unc.concurrente.utils.XMLReader;
 public class MonitorSystemTest {
 	
 	private static final String FILE_PATH = "src/test/resources/com/unc/concurrente/logs/transicionLog.txt";
-	private List<String[]> invariantes;
+	private static final List<String[]> INVARIANTES = XMLReader.leerInvatiantes("src/main/resources/PetriNetConfiguration.xml");
 	private String[] arraySecuence;
 	
 	
 	
 	@Test
 	public void verificarInvariantes() {
-		invariantes = XMLReader.leerInvatiantes("src/main/resources/PetriNetConfiguration.xml");
 		this.iniciarMonitor();
+		arraySecuence = this.leerArchivo().split("-");
 		
-		for(int i = 0;i < invariantes.size(); i++) {
-			assertTrue("No se cumple el T-invariante numero " + i, recorrerArreglo(invariantes.get(i)));
+		for(int i = 0;i < INVARIANTES.size(); i++) {
+			assertTrue("No se cumple el T-invariante numero " + i, recorrerArreglo(INVARIANTES.get(i)));
 		}
 	}
 	
@@ -42,14 +42,14 @@ public class MonitorSystemTest {
 		}
 	}
 	
-	private boolean recorrerArreglo(String[] array) { // devuelve true si se encontro la secuencia
+	private boolean recorrerArreglo(String[] invariante) { // devuelve true si se encontro la secuencia
 		int cursor = 0;
-		arraySecuence = this.leerArchivo().split("-");
 
 		for(int i = 0; i < arraySecuence.length; i++) {
-			if(arraySecuence[i].equals(array[cursor])) {
+			if(invariante[cursor].equals(arraySecuence[i])) {
 				cursor++;
-				if(cursor == array.length) {
+				arraySecuence[i] = "";
+				if(cursor == invariante.length) {
 					return true;
 				}
 			}
