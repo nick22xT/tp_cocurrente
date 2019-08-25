@@ -1,39 +1,31 @@
 package com.unc.concurrente.rdp;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import com.unc.concurrente.model.ParametrosIniciales;
 
 public class RDP {
 	
 	private int plazas, transiciones;
-	private static final Integer[] M0 = {0, 0, 0, 0, 1, 1, 1, 3, 0, 0, 30, 0, 30, 0, 0, 0, 1, 1, 60, 0, 0, 0, 1, 0, 1, 0, 1, 5}; /* marcado inicial:contiene el estado inical de la red.*/
-	private Integer[] m_actual;
+	private Integer[] marcaInicial; /* marcado inicial:contiene el estado inical de la red.*/
+	private Integer[] marcaActual;
+	private Boolean[] guardas;
 	private Integer[][] insidencia;/* Contiene las relaciones entre las plazas y las transiciones*/
-	protected boolean guardaT7;
 
-	public RDP() {
-		this.plazas = 28;
-		this.transiciones = 20;
-		this.m_actual = M0;
-		this.insidencia = this.cargarMatriz("src/main/resources/m_i.txt");
-		this.guardaT7 = false;
+	public RDP(ParametrosIniciales params) {
+		this.plazas = params.getPlazas();
+		this.transiciones = params.getTransiciones();
+		this.marcaInicial = params.getM0();
+		this.marcaActual = marcaInicial;
+		this.insidencia = params.getIncidencia();
+		this.guardas = params.getGuardas();
 
 	}
-	
-	public RDP(Integer[][] incidencia, Integer[] marcado, int plazas, int transiciones) {
-		this.insidencia = incidencia;
-		this.plazas = plazas;
-		this.transiciones = transiciones;
-		this.m_actual = marcado;
-	}
-	
+
 	/**
 	 * Devuelve el estado actual de la Red de Petri.
 	 * @return El vector de estado de la Red de Petri.
 	 */
 	public Integer[] getM_actual(){
-		return m_actual;
+		return marcaActual;
 	}
 	
 	/**
@@ -47,8 +39,8 @@ public class RDP {
 		Boolean[] sensibilizadasPorMarca = this.getSensibilizadasPorMarca();
 			
 		if(sensibilizadasPorMarca[transicion]) {
-			aux = sumar(m_actual, cTransicion);
-			m_actual = aux;
+			aux = sumar(marcaActual, cTransicion);
+			marcaActual = aux;
 			return true;
 		} else {
 			return false;
@@ -64,7 +56,7 @@ public class RDP {
 		Boolean[] aux = new Boolean[transiciones];
 		
 		for(int i = 0; i < transiciones; i++){
-			Integer[] suma = sumar(m_actual, obtenerColumna(i));
+			Integer[] suma = sumar(marcaActual, obtenerColumna(i));
 			
 			for(int j = 0; j < plazas; j++){
 				if(suma[j] < 0){
@@ -129,29 +121,11 @@ public class RDP {
 		return aux;
 	}
 	
-	/**
-	 * Carga una matriz desde un archivo
-	 * @param direccion: la direccion en la que se encuentra el archivo.
-	 * @return una matriz cargada con los datos del archivo.
-	 */
-	protected Integer[][] cargarMatriz(String direccion){
-		Scanner scanner = null;
-		Integer[][] aux = new Integer[plazas][transiciones];
-		
-		try {
-			scanner = new Scanner(new File(direccion));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		while(scanner.hasNextInt()){
-			for(int i =0; i < aux.length; i++){
-				for(int j =0; j < aux[0].length; j++){
-					if(scanner.hasNextInt())
-						aux[i][j] = scanner.nextInt();
-				}
-			}
-		}
-		return aux;
+	public Boolean[] getGuardas() {
+		return guardas;
+	}
+
+	public void setGuardas(Boolean[] guardas) {
+		this.guardas = guardas;
 	}
 }

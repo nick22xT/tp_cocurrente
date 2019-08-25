@@ -9,15 +9,15 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.unc.concurrente.filewriter.ManejadorDeArchivo;
 import com.unc.concurrente.mocks.RDPMock;
 import com.unc.concurrente.mocks.RecursoMock;
 import com.unc.concurrente.monitor.GestorDeMonitor;
+import com.unc.concurrente.utils.FileManagement;
 
 public class GestorDeMonitorTest {
 	
     private GestorDeMonitor monitor;
-    ManejadorDeArchivo manejador = new ManejadorDeArchivo();
+    FileManagement manejador = new FileManagement();
     
     @Before
     public void setUp() {

@@ -6,12 +6,13 @@ import com.unc.concurrente.monitor.GestorDeMonitor;
 
 public class ZonaDeCaja implements Runnable{
 	private GestorDeMonitor monitor;
-	private int transicion;
+	private int transicion, sleep;
 	private String descripcion;
 	
-	public ZonaDeCaja(GestorDeMonitor monitor, int transicion, String descripcion) {
+	public ZonaDeCaja(GestorDeMonitor monitor, int transicion, int sleep, String descripcion) {
 		this.monitor = monitor;
 		this.transicion = transicion;
+		this.sleep = sleep;
 		this.descripcion = descripcion;
 	}
 
@@ -21,7 +22,7 @@ public class ZonaDeCaja implements Runnable{
 			this.monitor.dispararTransicion(transicion);
 			System.out.printf(Thread.currentThread().getName() + " - Ingresando a zona de cajero por la %s.\n", descripcion);
 			try {
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.MILLISECONDS.sleep(sleep);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,14 +1,15 @@
 package com.unc.concurrente.rdp;
 
+import com.unc.concurrente.model.ParametrosIniciales;
 import com.unc.concurrente.utils.ShootingStates;
 import com.unc.concurrente.validations.ValidateInvariats;
 
 public class RDPTemporal extends RDP {
 	private TimerController temporizador;
 	
-	public RDPTemporal() {
-		super();
-		this.temporizador = new TimerController(super.getTransiciones());
+	public RDPTemporal(ParametrosIniciales params) {
+		super(params);
+		this.temporizador = new TimerController(params);
 		this.temporizador.setNuevoTimeStamp(super.getSensibilizadasPorMarca());
 		
 	}
@@ -27,7 +28,10 @@ public class RDPTemporal extends RDP {
 				estadoDeTransicion = ShootingStates.SLEEP;
 				break;
 			case ENTRE:
-				if(!controlDeGuardas(transicion)) {
+				Boolean[] guardas = super.getGuardas();
+				if(!guardas[transicion]) {
+					guardas[transicion] = true;
+					super.setGuardas(guardas);
 					estadoDeTransicion = ShootingStates.FAIL;
 					break;
 				} else {
@@ -36,8 +40,8 @@ public class RDPTemporal extends RDP {
 					temporizador.setNuevoTimeStamp(super.getSensibilizadasPorMarca());
 					temporizador.resetEsperando(transicion);
 					estadoDeTransicion = ShootingStates.SUCCESS;
+					break;
 				}
-				break;
 			case DESPUES:
 				estadoDeTransicion = ShootingStates.FAIL;
 				break;
@@ -47,16 +51,9 @@ public class RDPTemporal extends RDP {
 			return ShootingStates.FAIL;
 		}
 	}
-	
+
 	public Long getTimeStamp(Integer transicion) {
 		return this.temporizador.getTimeSleep(transicion);
-	}
-	
-	public Boolean controlDeGuardas(Integer transicion) {
-		if(transicion == 7 && super.guardaT7 == false) {
-			super.guardaT7 = true;
-			return false;
-		} return true;
 	}
 	
 }

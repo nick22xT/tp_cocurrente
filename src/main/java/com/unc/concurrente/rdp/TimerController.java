@@ -1,5 +1,6 @@
 package com.unc.concurrente.rdp;
 
+import com.unc.concurrente.model.ParametrosIniciales;
 import com.unc.concurrente.utils.InstantsTime;
 
 /**
@@ -8,22 +9,20 @@ import com.unc.concurrente.utils.InstantsTime;
  *  el control de las ventanas de tiempo a la hora de querer disparar una transicion y los calculos de los
  *  tiempos de sleep para los hilos que quieren disparar sus transiciones antes de haber llegado al limite inferior de
  *  su ventana de tiempo.
- * @author Nico
  *
  */
 public class TimerController {
-	private static final int INFINITO = 1000000000;
 	private boolean[] esperando;
 	private long[] tiempoDesdeSensibilizado;
-	private Integer[] alfa = new Integer[]{2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0};
-	private Integer[] beta = new Integer[]{INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO,
-			                               INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO,
-			                               INFINITO, INFINITO, INFINITO, INFINITO, INFINITO, INFINITO};
+	private Integer[] alfa;
+	private Integer[] beta;
 	
 
-	public TimerController(int totalTansiciones) {
-		this.tiempoDesdeSensibilizado = new long[totalTansiciones];
-		this.esperando = new boolean[totalTansiciones];
+	public TimerController(ParametrosIniciales params) {
+		this.alfa = params.getTiempos().getAlfa();
+		this.beta = params.getTiempos().getBeta();
+		this.tiempoDesdeSensibilizado = new long[params.getTransiciones()];
+		this.esperando = new boolean[params.getTransiciones()];
 	}
 	
 	/**

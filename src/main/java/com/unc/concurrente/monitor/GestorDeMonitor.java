@@ -9,21 +9,21 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.unc.concurrente.filewriter.ManejadorDeArchivo;
 import com.unc.concurrente.rdp.RDP;
 import com.unc.concurrente.rdp.RDPTemporal;
+import com.unc.concurrente.utils.FileManagement;
 import com.unc.concurrente.utils.ShootingStates;
 
 public class GestorDeMonitor {
 	private static final Logger LOG = LoggerFactory.getLogger(GestorDeMonitor.class); 
-	private ManejadorDeArchivo manejador;
+	private FileManagement manejador;
 	private Semaphore mutex;
 	private RDP rdp;
 	private RDPTemporal rdpTemp;
 	private Cola[] colas;
 	private boolean k;
 	
-	public GestorDeMonitor(RDP rdp, ManejadorDeArchivo manejador) {
+	public GestorDeMonitor(RDP rdp, FileManagement manejador) {
 		this.rdp = rdp;
 		this.mutex = new Semaphore(1, true);
 		this.colas = new Cola[rdp.getTransiciones()];
@@ -34,7 +34,7 @@ public class GestorDeMonitor {
 		}
 	}
 	
-	public GestorDeMonitor(RDPTemporal rdpTemp, ManejadorDeArchivo manejador) {
+	public GestorDeMonitor(RDPTemporal rdpTemp, FileManagement manejador) {
 		this.rdpTemp = rdpTemp;
 		this.mutex = new Semaphore(1, true);
 		this.colas = new Cola[rdpTemp.getTransiciones()];

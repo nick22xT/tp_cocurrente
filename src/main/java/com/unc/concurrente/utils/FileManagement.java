@@ -1,15 +1,15 @@
-package com.unc.concurrente.filewriter;
+package com.unc.concurrente.utils;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ManejadorDeArchivo {
-	private static final String FILE_PATH = "src\\test\\resources\\transicionLog.txt";
+public class FileManagement {
+	private static final String FILE_PATH = "src/test/resources/com/unc/concurrente/logs/transicionLog.txt";
 	private StringBuffer buffer;
 	private File file;
 
-	public ManejadorDeArchivo() {
+	public FileManagement() {
 		buffer = new StringBuffer();
 		file = new File(FILE_PATH);
 		

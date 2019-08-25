@@ -6,14 +6,11 @@ import com.unc.concurrente.utils.Prioridades;
 
 public class Politica {
 	
-	private static final Prioridades[] PRIORIDADES = new Prioridades[]{Prioridades.T6, Prioridades.T8, Prioridades.T0, Prioridades.T3,
-			Prioridades.T1, Prioridades.T4, Prioridades.T2,  Prioridades.T5, Prioridades.T10, Prioridades.T16, Prioridades.T17,
-			Prioridades.T12, Prioridades.T14, Prioridades.T15, Prioridades.T11, Prioridades.T13, Prioridades.T18, Prioridades.T19,
-		    Prioridades.T9, Prioridades.T7};
-
-	private Politica() {
-		throw new IllegalStateException();
-	}
+	private static final Prioridades[] PRIORIDADES = new Prioridades[]{Prioridades.T6, Prioridades.T8, Prioridades.T9,
+			Prioridades.T11, Prioridades.T13, Prioridades.T0, Prioridades.T3, Prioridades.T1, Prioridades.T4,
+			Prioridades.T2,  Prioridades.T5, Prioridades.T10, Prioridades.T16, Prioridades.T17,Prioridades.T12,
+			Prioridades.T14, Prioridades.T15, Prioridades.T18, Prioridades.T19, Prioridades.T7};
+	
 
 	public static Integer cual(Boolean[] m, Integer[] marcado){
 		int queueNumber = 0;

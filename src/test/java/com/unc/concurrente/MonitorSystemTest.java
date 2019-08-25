@@ -6,33 +6,36 @@ import static org.junit.Assert.assertTrue;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
 import com.unc.concurrente.Application;
+import com.unc.concurrente.utils.XMLReader;
 
 public class MonitorSystemTest {
 	
-	private static final String[] T_INVARIANTE_UNO={"0","3","6","8","10","12","14","16","18"};
-	private static final String[] T_INVARIANTE_DOS={"0","3","7","9","11","13","15","16","18"};
-	private static final String FILE_PATH = "src\\test\\resources\\transicionLog.txt";
+	private static final String FILE_PATH = "src/test/resources/com/unc/concurrente/logs/transicionLog.txt";
+	private List<String[]> invariantes;
 	private String[] arraySecuence;
 	
 	
 	
 	@Test
 	public void verificarInvariantes() {
+		invariantes = XMLReader.leerInvatiantes("src/main/resources/PetriNetConfiguration.xml");
 		this.iniciarMonitor();
 		
-		assertTrue(recorrerArreglo(T_INVARIANTE_UNO));
-		assertTrue(recorrerArreglo(T_INVARIANTE_DOS)); 
+		for(int i = 0;i < invariantes.size(); i++) {
+			assertTrue("No se cumple el T-invariante numero " + i, recorrerArreglo(invariantes.get(i)));
+		}
 	}
 	
 	private void iniciarMonitor() {
 		try {
-			Application.main(null);
-			TimeUnit.SECONDS.sleep(500);
+			Application.main(new String[] {"-d"});
+			TimeUnit.SECONDS.sleep(100);
 			Application.interrumpirMonitor();
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
