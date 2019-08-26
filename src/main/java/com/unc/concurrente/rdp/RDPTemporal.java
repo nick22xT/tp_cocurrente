@@ -2,7 +2,6 @@ package com.unc.concurrente.rdp;
 
 import com.unc.concurrente.model.ParametrosIniciales;
 import com.unc.concurrente.utils.ShootingStates;
-import com.unc.concurrente.validations.ValidateInvariats;
 
 public class RDPTemporal extends RDP {
 	private TimerController temporizador;
@@ -36,7 +35,6 @@ public class RDPTemporal extends RDP {
 					break;
 				} else {
 					super.disparar(transicion);
-					ValidateInvariats.ValidateInvariants(super.getM_actual());
 					temporizador.setNuevoTimeStamp(super.getSensibilizadasPorMarca());
 					temporizador.resetEsperando(transicion);
 					estadoDeTransicion = ShootingStates.SUCCESS;
