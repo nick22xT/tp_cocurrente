@@ -3,16 +3,14 @@ package com.unc.concurrente;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
 import com.unc.concurrente.Application;
+import com.unc.concurrente.mocks.InvariantsFileReader;
 import com.unc.concurrente.mocks.PInvariante;
 import com.unc.concurrente.utils.XMLReader;
 
@@ -29,8 +27,8 @@ public class MonitorSystemTest {
 	@Test
 	public void verificarInvariantes() {
 		this.iniciarMonitor();
-		arraySecuence = this.leerTInvariantes(T_FILE_PATH).split("-");
-		marcas = this.leerPInvariantes(P_FILE_PATH);
+		arraySecuence = InvariantsFileReader.leerTInvariantes(T_FILE_PATH).split("-");
+		marcas = InvariantsFileReader.leerPInvariantes(P_FILE_PATH);
 		
 		
 		for(int i = 0; i < T_INVARIANTES.size(); i++) {
@@ -86,56 +84,6 @@ public class MonitorSystemTest {
 		return true;
 	}
 	
-	private String leerTInvariantes(String path) {
-		FileReader file = null;
-		BufferedReader buffer = null;
-		String secuence = null;
-		
-		try {
-			file = new FileReader(path);
-			buffer = new BufferedReader(file);
-			secuence = buffer.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return secuence;
-	}
 	
-	private List<Integer[]> leerPInvariantes(String path) {
-		FileReader file = null;
-		BufferedReader buffer = null;
-		List<String> secuencias = new ArrayList<>();
-		
-		try {
-			file = new FileReader(path);
-			buffer = new BufferedReader(file);
-			
-			while(buffer.readLine() != null) {
-				if(buffer.readLine() != null) {
-					secuencias.add(buffer.readLine());
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return parserIntVector(secuencias);
-	}
-	
-	private List<Integer[]> parserIntVector(List<String> secuencias) {
-		List<Integer[]> marcas = new ArrayList<>();
-		
-		for(int i = 0; i < secuencias.size(); i++) {
-			String[] secuencia = secuencias.get(i).split(",");
-			Integer[] numSecuencia = new Integer[secuencia.length];
-			for(int j = 0; j < secuencia.length; j++) {
-				numSecuencia[j] = Integer.parseInt(secuencia[j]);
-			}
-			marcas.add(numSecuencia);
-		}
-		return marcas;
-		
-	}
 	
 }
