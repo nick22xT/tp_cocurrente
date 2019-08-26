@@ -128,4 +128,15 @@ public class RDP {
 	public void setGuardas(Boolean[] guardas) {
 		this.guardas = guardas;
 	}
+	
+	@Override
+	public String toString() {
+		String cadena = "";
+		
+		for(int i = 0; i < marcaActual.length; i++) {
+			cadena = cadena + marcaActual[i] + ",";
+		}
+		return cadena;
+		
+	}
 }

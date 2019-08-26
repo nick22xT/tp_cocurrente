@@ -14,6 +14,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.unc.concurrente.mocks.PInvariante;
 import com.unc.concurrente.model.ParametrosIniciales;
 import com.unc.concurrente.model.Tiempos;
 
@@ -32,6 +33,8 @@ public class XMLReader {
 	private static final String INFINITO = "INF";
 	private static final int INF_NUMERO = 1000000000;
 	private static final String T_INVARIANTES = "t-invariantes";
+	private static final String P_INVARIANTES = "p-invariantes";
+	private static final String ATTRIBUTE_TOTAL = "total";
 	private static final String INVARIANTE = "invariante";
 	
 	/**
@@ -64,11 +67,18 @@ public class XMLReader {
 		return params;
 	}
 	
-	public static List<String[]> leerInvatiantes(String path) {
+	public static List<String[]> leerTInvatiantes(String path) {
 		Document document = getArchivo(path);
         
         NodeList nodeList = document.getElementsByTagName(T_INVARIANTES);
-        return getInvatiares(nodeList.item(0));
+        return getTInvatiares(nodeList.item(0));
+	}
+	
+	public static List<PInvariante> leerPInvariantes(String path) {
+		Document document = getArchivo(path);
+		
+		NodeList nodeList = document.getElementsByTagName(P_INVARIANTES);
+		return getPInvatiares(nodeList.item(0));
 	}
 	
 	static Document getArchivo(String path) {
@@ -149,7 +159,7 @@ public class XMLReader {
 		return tiempos;
 	}
 	
-	static List<String[]> getInvatiares(Node node) {
+	static List<String[]> getTInvatiares(Node node) {
 		NodeList nodeList = node.getChildNodes();
 		List<String[]> charSecuenceList = new ArrayList<>();
 		
@@ -161,5 +171,21 @@ public class XMLReader {
 		
 		return charSecuenceList;
 		
+	}
+	
+	static List<PInvariante> getPInvatiares(Node node) {
+		NodeList nodeList = node.getChildNodes();
+		List<PInvariante> invariantes = new ArrayList<>();
+		
+		for(int i = 0; i < nodeList.getLength(); i++) {
+			if(INVARIANTE.equalsIgnoreCase(nodeList.item(i).getNodeName())) {
+				PInvariante invariante = new PInvariante();
+				int total = Integer.parseInt(nodeList.item(i).getAttributes().getNamedItem(ATTRIBUTE_TOTAL).getNodeValue());
+				invariante.setTotal(total);
+				invariante.setSecuencia(nodeList.item(i).getTextContent().split(DELIMITADOR));
+				invariantes.add(invariante);
+			}
+		}
+		return invariantes;
 	}
 }

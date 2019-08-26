@@ -64,7 +64,8 @@ public class GestorDeMonitor {
 			
 			if(k == true) { //el hilo puede ejecutar su tarea
 				LOG.info("{}: exito al disparar transicion {}.", Thread.currentThread().getName(), transicion);
-				manejador.escribirBuffer(transicion);
+				manejador.escribirTBuffer(transicion);
+				manejador.escribirPBuffer(Arrays.toString(rdp.getM_actual()));
 				Boolean[] vectorDeSensibilizadas = rdp.getSensibilizadasPorMarca();
 				Boolean[] vectorDeColas = getVectorDeColas();
 				Boolean[] m = operacionAnd(vectorDeSensibilizadas, vectorDeColas);
@@ -110,7 +111,8 @@ public class GestorDeMonitor {
 			switch(estadoDeDisparo) {
 			case SUCCESS: //Se disparo la transicion
 				LOG.info("{}: exito al disparar transicion {}.", Thread.currentThread().getName(), transicion);
-				manejador.escribirBuffer(transicion);
+				manejador.escribirTBuffer(transicion);
+				manejador.escribirPBuffer(rdpTemp.toString());
 				Boolean[] vectorDeSensibilizadas = rdpTemp.getSensibilizadasPorMarca();
 				Boolean[] vectorDeColas = getVectorDeColas();
 				Boolean[] m = operacionAnd(vectorDeSensibilizadas, vectorDeColas);

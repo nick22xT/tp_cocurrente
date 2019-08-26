@@ -41,7 +41,20 @@
       <beta>INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF</beta>
    </t-tiempo>
    <invariantes>
-      <p-invariantes />
+      <p-invariantes>
+	      <invariante total="30">10,11,14,8</invariante>
+	      <invariante total="30">12,13,15,9</invariante>
+	      <invariante total="1">14,16,8</invariante>
+	      <invariante total="1">15,17,9</invariante>
+	      <invariante total="1">20,21,22</invariante>
+	      <invariante total="1">23,24</invariante>
+	      <invariante total="1">25,26</invariante>
+	      <invariante total="5">14,15,19,27</invariante>
+	      <invariante total="1">0,4</invariante>
+	      <invariante total="1">1,5</invariante>
+	      <invariante total="1">2,6</invariante>
+	      <invariante total="3">3,7</invariante>
+      </p-invariantes>      
       <t-invariantes>
          <invariante>0,3,6,8,10,12,14,16,18</invariante>
          <invariante>1,4,6,8,10,12,14,16,18</invariante>
