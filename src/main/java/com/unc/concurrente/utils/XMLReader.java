@@ -67,21 +67,21 @@ public class XMLReader {
 		return params;
 	}
 	
-	public static List<String[]> leerTInvatiantes(String path) {
+	public static List<String[]> cargarTInvatiantes(String path) {
 		Document document = getArchivo(path);
         
         NodeList nodeList = document.getElementsByTagName(T_INVARIANTES);
         return getTInvatiares(nodeList.item(0));
 	}
 	
-	public static List<PInvariante> leerPInvariantes(String path) {
+	public static List<PInvariante> cargarPInvariantes(String path) {
 		Document document = getArchivo(path);
 		
 		NodeList nodeList = document.getElementsByTagName(P_INVARIANTES);
 		return getPInvatiares(nodeList.item(0));
 	}
 	
-	static Document getArchivo(String path) {
+	private static Document getArchivo(String path) {
 		File xmlFile = new File(path);
 		DocumentBuilderFactory dbf = null;
         DocumentBuilder documentBuilder = null;
@@ -99,7 +99,7 @@ public class XMLReader {
 		return document;
 	}
 	
-	static Integer[][] parsearMatriz(Node node, Integer plazas, Integer transiciones) {
+	private static Integer[][] parsearMatriz(Node node, Integer plazas, Integer transiciones) {
 		NodeList nodeList = node.getChildNodes();
 		Integer [][] intMatriz = new Integer[plazas][transiciones];
 		int indice = 0;
@@ -118,7 +118,7 @@ public class XMLReader {
 		return intMatriz;
 	}
 	
-	static Boolean[] parsearGuardas(String caracteres) {
+	private static Boolean[] parsearGuardas(String caracteres) {
 		String[] charSecuence = caracteres.split(DELIMITADOR);
 		Boolean[] arrayBoolean = new Boolean[charSecuence.length];
 		
@@ -129,7 +129,7 @@ public class XMLReader {
 		return arrayBoolean;
 	}
 	
-	static Integer[] parsearVector(String caracteres) {
+	private static Integer[] parsearVector(String caracteres) {
 		String[] charSecuence = caracteres.split(DELIMITADOR);
 		Integer[] intSecuence = new Integer[charSecuence.length];
 		
@@ -144,7 +144,7 @@ public class XMLReader {
 		return intSecuence;
 	}
 	
-	static Tiempos parsearTiempos(Node node) {
+	private static Tiempos parsearTiempos(Node node) {
 		NodeList nodeList = node.getChildNodes();
 		Tiempos tiempos = new Tiempos();
 		
@@ -159,7 +159,7 @@ public class XMLReader {
 		return tiempos;
 	}
 	
-	static List<String[]> getTInvatiares(Node node) {
+	private static List<String[]> getTInvatiares(Node node) {
 		NodeList nodeList = node.getChildNodes();
 		List<String[]> charSecuenceList = new ArrayList<>();
 		
@@ -173,7 +173,7 @@ public class XMLReader {
 		
 	}
 	
-	static List<PInvariante> getPInvatiares(Node node) {
+	private static List<PInvariante> getPInvatiares(Node node) {
 		NodeList nodeList = node.getChildNodes();
 		List<PInvariante> invariantes = new ArrayList<>();
 		

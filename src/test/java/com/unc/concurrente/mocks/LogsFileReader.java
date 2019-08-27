@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvariantsFileReader {
+public class LogsFileReader {
 	
-	public static String leerTInvariantes(String path) {
+	public static String leerLogTransiciones(String path) {
 		FileReader file = null;
 		BufferedReader buffer = null;
 		String secuence = null;
@@ -24,7 +24,7 @@ public class InvariantsFileReader {
 		return secuence;
 	}
 	
-	public static List<Integer[]> leerPInvariantes(String path) {
+	public static List<Integer[]> leerLogEstados(String path) {
 		FileReader file = null;
 		BufferedReader buffer = null;
 		List<String> secuencias = new ArrayList<>();

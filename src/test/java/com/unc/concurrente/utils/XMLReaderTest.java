@@ -125,7 +125,7 @@ public class XMLReaderTest {
     
     @Test
     public void test_leerXML_exito_en_cargar_el_vector_de_t_invariante() {
-    	List<String[]> invariantes = XMLReader.leerTInvatiantes(XML_CONFIGURAION_FILE_PATH);
+    	List<String[]> invariantes = XMLReader.cargarTInvatiantes(XML_CONFIGURAION_FILE_PATH);
     	String[] tInvariante = invariantes.get(0);
     	
     	assertEquals("La cantidad de t-invariantes cargados no es la esperada", invariantes.size(), 1);
@@ -141,7 +141,7 @@ public class XMLReaderTest {
     
     @Test
     public void test_leerXML_exito_en_cargar_el_vector_de_p_invariantes() {
-    	List<PInvariante> pInvariantes = XMLReader.leerPInvariantes(XML_CONFIGURAION_FILE_PATH);
+    	List<PInvariante> pInvariantes = XMLReader.cargarPInvariantes(XML_CONFIGURAION_FILE_PATH);
     	PInvariante invariante;
     	
     	assertEquals("La cantidad de p-invariantes cargados no es la esperada", pInvariantes.size(), 4);

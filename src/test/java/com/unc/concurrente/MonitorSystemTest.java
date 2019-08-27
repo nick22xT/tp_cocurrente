@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 import com.unc.concurrente.Application;
-import com.unc.concurrente.mocks.InvariantsFileReader;
+import com.unc.concurrente.mocks.LogsFileReader;
 import com.unc.concurrente.mocks.PInvariante;
 import com.unc.concurrente.utils.XMLReader;
 
@@ -18,17 +18,17 @@ public class MonitorSystemTest {
 	
 	private static final String T_FILE_PATH = "src/test/resources/com/unc/concurrente/logs/transicionLog.txt";
 	private static final String P_FILE_PATH = "src/test/resources/com/unc/concurrente/logs/marcaLog.txt";
-	private static final List<String[]> T_INVARIANTES = XMLReader.leerTInvatiantes("src/main/resources/PetriNetConfiguration.xml");
-	private static final List<PInvariante> P_INVARIANTES = XMLReader.leerPInvariantes("src/main/resources/PetriNetConfiguration.xml");
-	private String[] arraySecuence;
+	private static final List<String[]> T_INVARIANTES = XMLReader.cargarTInvatiantes("src/main/resources/PetriNetConfiguration.xml");
+	private static final List<PInvariante> P_INVARIANTES = XMLReader.cargarPInvariantes("src/main/resources/PetriNetConfiguration.xml");
+	private String[] transciciones;
 	List<Integer[]> marcas;
 	
 	
 	@Test
 	public void verificarInvariantes() {
 		this.iniciarMonitor();
-		arraySecuence = InvariantsFileReader.leerTInvariantes(T_FILE_PATH).split("-");
-		marcas = InvariantsFileReader.leerPInvariantes(P_FILE_PATH);
+		transciciones = LogsFileReader.leerLogTransiciones(T_FILE_PATH).split("-");
+		marcas = LogsFileReader.leerLogEstados(P_FILE_PATH);
 		
 		
 		for(int i = 0; i < T_INVARIANTES.size(); i++) {
@@ -53,10 +53,10 @@ public class MonitorSystemTest {
 	private boolean recorrerTInvariantes(String[] invariante) { // devuelve true si se encontro la secuencia
 		int cursor = 0;
 
-		for(int i = 0; i < arraySecuence.length; i++) {
-			if(invariante[cursor].equals(arraySecuence[i])) {
+		for(int i = 0; i < transciciones.length; i++) {
+			if(invariante[cursor].equals(transciciones[i])) {
 				cursor++;
-				arraySecuence[i] = "";
+				transciciones[i] = "";
 				if(cursor == invariante.length) {
 					return true;
 				}
@@ -65,7 +65,7 @@ public class MonitorSystemTest {
 		return false;
 	}
 	
-	private boolean recorrerPInvariantes(PInvariante invariante) { // devuelve true si se encontro la secuencia
+	private boolean recorrerPInvariantes(PInvariante invariante) { // devuelve true si se cumple el P-invariante para todas las marcas
 		int suma = 0;
 
 		for(int i = 0; i < marcas.size(); i++) {
@@ -78,7 +78,6 @@ public class MonitorSystemTest {
 			if(suma != invariante.getTotal()) {
 				return false;
 			}
-			
 			suma = 0;
 		}
 		return true;
