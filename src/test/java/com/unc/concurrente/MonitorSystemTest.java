@@ -30,6 +30,8 @@ public class MonitorSystemTest {
 		transciciones = LogsFileReader.leerLogTransiciones(T_FILE_PATH).split("-");
 		marcas = LogsFileReader.leerLogEstados(P_FILE_PATH);
 		
+		TInvariantesStateMachine sm = new TInvariantesStateMachine(T_INVARIANTES);
+		sm.validatTInvariantes(transciciones);
 		
 		for(int i = 0; i < T_INVARIANTES.size(); i++) {
 			assertTrue("No se cumple el T-invariante numero " + i, recorrerTInvariantes(T_INVARIANTES.get(i)));
@@ -43,7 +45,7 @@ public class MonitorSystemTest {
 	private void iniciarMonitor() {
 		try {
 			Application.main(new String[] {"-d"});
-			TimeUnit.SECONDS.sleep(100);
+			TimeUnit.SECONDS.sleep(80);
 			Application.interrumpirMonitor();
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
