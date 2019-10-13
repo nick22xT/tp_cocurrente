@@ -49,12 +49,14 @@ public class LogsFileReader {
 		List<Integer[]> marcas = new ArrayList<>();
 		
 		for(int i = 0; i < secuencias.size(); i++) {
-			String[] secuencia = secuencias.get(i).split(",");
-			Integer[] numSecuencia = new Integer[secuencia.length];
-			for(int j = 0; j < secuencia.length; j++) {
-				numSecuencia[j] = Integer.parseInt(secuencia[j]);
+			if(secuencias.get(i) != null) {
+				String[] secuencia = secuencias.get(i).split(",");
+				Integer[] numSecuencia = new Integer[secuencia.length];
+				for(int j = 0; j < secuencia.length; j++) {
+					numSecuencia[j] = Integer.parseInt(secuencia[j]);
+				}
+				marcas.add(numSecuencia);
 			}
-			marcas.add(numSecuencia);
 		}
 		return marcas;
 		

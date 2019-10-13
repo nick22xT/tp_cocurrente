@@ -1,6 +1,5 @@
 package com.unc.concurrente;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import com.unc.concurrente.monitor.GestorDeMonitor;
@@ -31,7 +30,7 @@ public class Application {
 	private static Thread salidaUno;
 	private static Thread salidaDos;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		if(args.length > 0) {
 			if("-d".equals(args[0])) {
 				sleep = 0;

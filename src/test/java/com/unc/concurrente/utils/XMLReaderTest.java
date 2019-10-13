@@ -2,13 +2,9 @@ package com.unc.concurrente.utils;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import com.unc.concurrente.mocks.PInvariante;
 import com.unc.concurrente.model.ParametrosIniciales;
 import com.unc.concurrente.utils.XMLReader;
 
@@ -23,8 +19,6 @@ public class XMLReaderTest {
 	private static final Integer[] BETA = new Integer[]{INF, INF, INF, INF, INF, INF};
 	private static final Integer[] M0 = new Integer[]{1, 1, 0, 0, 0, 0, 1, 0, 5};
 	private static final Boolean[] GUARDAS = new Boolean[]{true, true, true, true, true, true};
-	private static final String[] T_INVARIANTE = {"0", "1", "2", "3", "4", "5"};
-	private static final List<PInvariante> P_INVARIANTES = mockPInvariantes();
 	private static final Integer[][] INCIDENCIA = new Integer[][] {{-1,0,0,0,1,0},
                                                                    {0,-1,0,0,0,1},
                                                                    {1,0,0,-1,0,0},
@@ -123,84 +117,4 @@ public class XMLReaderTest {
     	assertEquals(beta[5], BETA[5]);
     }
     
-    @Test
-    public void test_leerXML_exito_en_cargar_el_vector_de_t_invariante() {
-    	List<String[]> invariantes = XMLReader.cargarTInvatiantes(XML_CONFIGURAION_FILE_PATH);
-    	String[] tInvariante = invariantes.get(0);
-    	
-    	assertEquals("La cantidad de t-invariantes cargados no es la esperada", invariantes.size(), 1);
-    	assertEquals("El numero de datos del T-invariante uno no es el esperado", tInvariante.length, T_INVARIANTE.length);
-    	
-    	assertEquals(tInvariante[0], T_INVARIANTE[0]);
-    	assertEquals(tInvariante[1], T_INVARIANTE[1]);
-    	assertEquals(tInvariante[2], T_INVARIANTE[2]);
-    	assertEquals(tInvariante[3], T_INVARIANTE[3]);
-    	assertEquals(tInvariante[4], T_INVARIANTE[4]);
-    	assertEquals(tInvariante[5], T_INVARIANTE[5]);
-    }
-    
-    @Test
-    public void test_leerXML_exito_en_cargar_el_vector_de_p_invariantes() {
-    	List<PInvariante> pInvariantes = XMLReader.cargarPInvariantes(XML_CONFIGURAION_FILE_PATH);
-    	PInvariante invariante;
-    	
-    	assertEquals("La cantidad de p-invariantes cargados no es la esperada", pInvariantes.size(), 4);
-    	
-    	invariante = pInvariantes.get(0);
-    	assertEquals(invariante.getTotal(), P_INVARIANTES.get(0).getTotal());
-    	assertEquals(invariante.getSecuencia().length, P_INVARIANTES.get(0).getSecuencia().length);
-    	assertEquals(invariante.getSecuencia()[0], P_INVARIANTES.get(0).getSecuencia()[0]);
-    	assertEquals(invariante.getSecuencia()[1], P_INVARIANTES.get(0).getSecuencia()[1]);
-    	assertEquals(invariante.getSecuencia()[2], P_INVARIANTES.get(0).getSecuencia()[2]);
-    	
-    	invariante = pInvariantes.get(1);
-    	assertEquals(invariante.getTotal(), P_INVARIANTES.get(1).getTotal());
-    	assertEquals(invariante.getSecuencia().length, P_INVARIANTES.get(1).getSecuencia().length);
-    	assertEquals(invariante.getSecuencia()[0], P_INVARIANTES.get(1).getSecuencia()[0]);
-    	assertEquals(invariante.getSecuencia()[1], P_INVARIANTES.get(1).getSecuencia()[1]);
-    	assertEquals(invariante.getSecuencia()[2], P_INVARIANTES.get(1).getSecuencia()[2]);
-    	
-    	invariante = pInvariantes.get(2);
-    	assertEquals(invariante.getTotal(), P_INVARIANTES.get(2).getTotal());
-    	assertEquals(invariante.getSecuencia().length, P_INVARIANTES.get(0).getSecuencia().length);
-    	assertEquals(invariante.getSecuencia()[0], P_INVARIANTES.get(2).getSecuencia()[0]);
-    	assertEquals(invariante.getSecuencia()[1], P_INVARIANTES.get(2).getSecuencia()[1]);
-    	assertEquals(invariante.getSecuencia()[2], P_INVARIANTES.get(2).getSecuencia()[2]);
-    	
-    	invariante = pInvariantes.get(3);
-    	assertEquals(invariante.getTotal(), P_INVARIANTES.get(3).getTotal());
-    	assertEquals(invariante.getSecuencia().length, P_INVARIANTES.get(3).getSecuencia().length);
-    	assertEquals(invariante.getSecuencia()[0], P_INVARIANTES.get(3).getSecuencia()[0]);
-    	assertEquals(invariante.getSecuencia()[1], P_INVARIANTES.get(3).getSecuencia()[1]);
-    	assertEquals(invariante.getSecuencia()[2], P_INVARIANTES.get(3).getSecuencia()[2]);
-    	assertEquals(invariante.getSecuencia()[3], P_INVARIANTES.get(3).getSecuencia()[3]);
-    	
-    }
-    
-    private static List<PInvariante> mockPInvariantes() {
-    	List<PInvariante> pInvariantes = new ArrayList<>();
-    	PInvariante invariante;
-    	
-    	invariante = new PInvariante();
-    	invariante.setTotal(1);
-    	invariante.setSecuencia(new String[] {"1", "3", "5"});
-    	pInvariantes.add(invariante);
-    	
-    	invariante = new PInvariante();
-    	invariante.setTotal(1);
-    	invariante.setSecuencia(new String[] {"0", "2", "4"});
-    	pInvariantes.add(invariante);
-    	
-    	invariante = new PInvariante();
-    	invariante.setTotal(1);
-    	invariante.setSecuencia(new String[] {"2", "3", "6"});
-    	pInvariantes.add(invariante);
-    	
-    	invariante = new PInvariante();
-    	invariante.setTotal(5);
-    	invariante.setSecuencia(new String[] {"2", "3", "7", "8"});
-    	pInvariantes.add(invariante);
-    	
-		return pInvariantes;
-    }
 }

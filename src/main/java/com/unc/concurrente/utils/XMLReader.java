@@ -2,8 +2,6 @@ package com.unc.concurrente.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,7 +12,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.unc.concurrente.mocks.PInvariante;
 import com.unc.concurrente.model.ParametrosIniciales;
 import com.unc.concurrente.model.Tiempos;
 
@@ -32,10 +29,6 @@ public class XMLReader {
 	private static final String BETA = "beta";
 	private static final String INFINITO = "INF";
 	private static final int INF_NUMERO = 1000000000;
-	private static final String T_INVARIANTES = "t-invariantes";
-	private static final String P_INVARIANTES = "p-invariantes";
-	private static final String ATTRIBUTE_TOTAL = "total";
-	private static final String INVARIANTE = "invariante";
 	
 	/**
 	 * Carga los parametros iniciales de la red de petri desde un archivo XML
@@ -67,19 +60,6 @@ public class XMLReader {
 		return params;
 	}
 	
-	public static List<String[]> cargarTInvatiantes(String path) {
-		Document document = getArchivo(path);
-        
-        NodeList nodeList = document.getElementsByTagName(T_INVARIANTES);
-        return getTInvatiares(nodeList.item(0));
-	}
-	
-	public static List<PInvariante> cargarPInvariantes(String path) {
-		Document document = getArchivo(path);
-		
-		NodeList nodeList = document.getElementsByTagName(P_INVARIANTES);
-		return getPInvatiares(nodeList.item(0));
-	}
 	
 	private static Document getArchivo(String path) {
 		File xmlFile = new File(path);
@@ -157,35 +137,5 @@ public class XMLReader {
 		}
 		
 		return tiempos;
-	}
-	
-	private static List<String[]> getTInvatiares(Node node) {
-		NodeList nodeList = node.getChildNodes();
-		List<String[]> charSecuenceList = new ArrayList<>();
-		
-		for(int i = 0; i < nodeList.getLength(); i++) {
-			if(INVARIANTE.equalsIgnoreCase(nodeList.item(i).getNodeName())) {
-				charSecuenceList.add(nodeList.item(i).getTextContent().split(DELIMITADOR));
-			}
-		}
-		
-		return charSecuenceList;
-		
-	}
-	
-	private static List<PInvariante> getPInvatiares(Node node) {
-		NodeList nodeList = node.getChildNodes();
-		List<PInvariante> invariantes = new ArrayList<>();
-		
-		for(int i = 0; i < nodeList.getLength(); i++) {
-			if(INVARIANTE.equalsIgnoreCase(nodeList.item(i).getNodeName())) {
-				PInvariante invariante = new PInvariante();
-				int total = Integer.parseInt(nodeList.item(i).getAttributes().getNamedItem(ATTRIBUTE_TOTAL).getNodeValue());
-				invariante.setTotal(total);
-				invariante.setSecuencia(nodeList.item(i).getTextContent().split(DELIMITADOR));
-				invariantes.add(invariante);
-			}
-		}
-		return invariantes;
 	}
 }
